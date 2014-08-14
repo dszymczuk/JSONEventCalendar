@@ -64,46 +64,89 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* COLORS */
-/* line 27, ../sass/style.scss */
-#ds-calendar {
+/* line 29, ../sass/style.scss */
+.ds-calendar {
   width: 1000px;
   background-color: wheat;
   overflow: hidden;
   color: white;
 }
-/* line 34, ../sass/style.scss */
-#ds-calendar .ds-calendar-header {
+/* line 36, ../sass/style.scss */
+.ds-calendar .ds-calendar-header {
   text-align: center;
+  background-color: #286c41;
+  position: relative;
 }
-/* line 42, ../sass/style.scss */
-#ds-calendar .ds-title .ds-day {
+/* line 41, ../sass/style.scss */
+.ds-calendar .ds-calendar-header .ds-prev-month {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+}
+/* line 45, ../sass/style.scss */
+.ds-calendar .ds-calendar-header .ds-prev-month span {
+  height: 0;
+  width: 0;
+  font-size: 0;
+  line-height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  float: left;
+  text-indent: -5000px;
+  border-left-width: 0;
+  border-right: 6px solid #fff;
+}
+/* line 58, ../sass/style.scss */
+.ds-calendar .ds-calendar-header .ds-title-month {
+  display: inline-block;
+}
+/* line 61, ../sass/style.scss */
+.ds-calendar .ds-calendar-header .ds-next-month {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+}
+/* line 65, ../sass/style.scss */
+.ds-calendar .ds-calendar-header .ds-next-month span {
+  height: 0;
+  width: 0;
+  font-size: 0;
+  line-height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid #fff;
+  float: left;
+  text-indent: -5000px;
+}
+/* line 83, ../sass/style.scss */
+.ds-calendar .ds-title .ds-day {
   width: 14%;
   height: 20px;
   background-color: #14331c;
 }
-/* line 47, ../sass/style.scss */
-#ds-calendar .ds-day {
+/* line 88, ../sass/style.scss */
+.ds-calendar .ds-day {
   width: 14%;
   height: auto;
   background-color: #338046;
   border: 1px solid #52cc70;
   float: left;
 }
-/* line 52, ../sass/style.scss */
-#ds-calendar .ds-day.ds-new-week {
+/* line 93, ../sass/style.scss */
+.ds-calendar .ds-day.ds-new-week {
   clear: left;
 }
-/* line 55, ../sass/style.scss */
-#ds-calendar .ds-day .ds-day-header {
+/* line 96, ../sass/style.scss */
+.ds-calendar .ds-day .ds-day-header {
   background-color: #296638;
 }
-/* line 58, ../sass/style.scss */
-#ds-calendar .ds-day .ds-events {
+/* line 99, ../sass/style.scss */
+.ds-calendar .ds-day .ds-events {
   background-color: #1f4d2a;
   overflow: hidden;
 }
-/* line 63, ../sass/style.scss */
-#ds-calendar .ds-day .ds-event {
+/* line 104, ../sass/style.scss */
+.ds-calendar .ds-day .ds-event {
   background-color: yellowgreen;
   width: 25px;
   height: 25px;
