@@ -14,6 +14,16 @@
   
 }
 
+/* COLORS */
+$dayTitleColor: #14331c;
+$dayColor: #338046;
+$dayColorBorder: #52cc70;
+$dayHeaderColor: #296638;
+$eventsColor: #1f4d2a;
+$eventColor: #9acd32;
+$eventColorBorder: #27330d;
+
+
 #ds-calendar {
   $maxSizeDay: floor(100%/7);
   
@@ -21,35 +31,40 @@
   background-color: wheat;
   overflow: hidden;
   
+  .ds-calendar-header {
+    text-align: center;
+    
+  }
+  
   
   color: white;
   .ds-title {
     .ds-day {
       @include size($maxSizeDay,20px);
-      background-color: #14331c;
+      background-color: $dayTitleColor;
     }
   }
   .ds-day {
     @include size($maxSizeDay,auto);
-    background-color: #338046;
-    border: 1px solid #52cc70;
+    background-color: $dayColor;
+    border: 1px solid $dayColorBorder;
     float: left;
     &.ds-new-week {
       clear: left;
     }
     .ds-day-header {
-      background-color: #296638;
+      background-color: $dayHeaderColor;
     }
     .ds-events {
 //      @include size(50px,50px);
-      background-color: #1f4d2a;
+      background-color: $eventsColor;
       overflow: hidden;
     }
     .ds-event {
-      background-color: #9acd32;
+      background-color: $eventColor;
       @include size(25px);
       float: left;
-      border: 1px solid #27330d;
+      border: 1px solid $eventColorBorder;
     }
   }
 }

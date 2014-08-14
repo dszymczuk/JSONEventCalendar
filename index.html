@@ -18,7 +18,9 @@
 <body>
 
 <div id="ds-calendar">
-
+    <div class="ds-calendar-header">
+        July 2014
+    </div>
     <div class="ds-title">
         <div class="ds-day ds-new-week">Monday</div>
         <div class="ds-day">Tuesday</div>
@@ -190,6 +192,11 @@
                     maxHeight = that.height();
             });
             console.warn("Max Height: ",maxHeight);
+
+            $('.ds-events').each(function(){
+                var that = $(this);
+                that.css('height',maxHeight + "px");
+            });
         }
 
         refreshDayHeight();
