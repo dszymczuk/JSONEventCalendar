@@ -19,7 +19,10 @@
 
 <div id="ds-calendar">
     <div class="ds-calendar-header">
-        July 2014
+        <div class="ds-prev-month">&lt;</div>
+        <div class="ds-title-month">July 2014</div>
+        <div class="ds-next-month">&gt;</div>
+        
     </div>
     <div class="ds-title">
         <div class="ds-day ds-new-week">Monday</div>
@@ -181,6 +184,7 @@
 </div>
 
 <script src="js/jquery.js"></script>
+<script src="js/dsJSONEventCalendar.js"></script>
 <script>
     $(document).ready(function(){
         
@@ -200,6 +204,10 @@
         }
 
         refreshDayHeight();
+
+        
+        var ds = new dsJSONEventCalendar();
+        ds.someOtherMethod();
         
     });
 </script>

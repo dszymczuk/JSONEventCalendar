@@ -15,7 +15,9 @@
 }
 
 /* COLORS */
+$calendarHeader: #286c41;
 $dayTitleColor: #14331c;
+
 $dayColor: #338046;
 $dayColorBorder: #52cc70;
 $dayHeaderColor: #296638;
@@ -33,7 +35,18 @@ $eventColorBorder: #27330d;
   
   .ds-calendar-header {
     text-align: center;
-    
+    background-color: $calendarHeader;
+
+    .ds-prev-month {
+      
+    }
+    .ds-title-month {
+      
+    }
+    .ds-next-month {
+      
+    }
+
   }
   
   
