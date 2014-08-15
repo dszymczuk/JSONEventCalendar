@@ -4,7 +4,7 @@ JSONEventCalendar
 Description
 -----------
 
-JSONEventCalendar is calendar which shows events in JSON format.
+JSONEventCalendar is jQuery plugin to create calendar which shows events in JSON format.
 Each event has element like: title, date and time, type, link and more.
 
 You can choose how calendar works - show only calendar, list of events of both.
