@@ -10,18 +10,28 @@
     $.fn.JSONEventCalendar = function(options) {
         console.log("JSONEventCalendar");
 
-        var settings = $.extend({
-            color: "#556b2f",
-            backgroundColor: "white"
-        }, options );
+        var settings = $.extend($.fn.JSONEventCalendar.settings, options );
 
+        function refreshDayHeight(element) {
+            var maxHeight = 0;
+            element.find('.ds-events').each(function(){
+                var that = $(this);
+                if(that.height() > maxHeight)
+                    maxHeight = that.height();
+            }).each(function(){
+                var that = $(this);
+                that.css('height',maxHeight + "px");
+            });
+        }
 
         return this.each( function() {
-//            $(this).html(text);
             var that = $(this);
-            console.log(that);
+
+            refreshDayHeight(that);
+
+
             that.on('click','.ds-next-month',function(){
-                console.log(".ds-next-month");
+                console.log(settings.monthNames);
             })
         });
 
@@ -30,7 +40,11 @@
 
 
 
-
+$.fn.JSONEventCalendar.settings = {
+    monthNames: [ "January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December" ],
+    dayNames: [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday','Thursday', 'Friday', 'Saturday' ],
+    dayNamesShort: [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ]
+};
 
 
 var data = [];

@@ -19,7 +19,7 @@
 
 
 
-<div class="dsJSONEventCalendar">
+<div id="calendar1" class="dsJSONEventCalendar">
     <div class="ds-calendar">
         <div class="ds-calendar-header">
             <div class="ds-prev-month"><span>&lt;</span></div>
@@ -207,27 +207,7 @@
 <script src="js/dsJSONEventCalendar.js"></script>
 <script>
     $(document).ready(function(){
-        
-        function refreshDayHeight() {
-            var maxHeight = 0;
-            $('.ds-events').each(function(){
-                var that = $(this);
-                if(that.height() > maxHeight)
-                    maxHeight = that.height();
-            });
-            console.warn("Max Height: ",maxHeight);
-
-            $('.ds-events').each(function(){
-                var that = $(this);
-                that.css('height',maxHeight + "px");
-            });
-        }
-
-        refreshDayHeight();
-
-        $("#test").JSONEventCalendar();
-
-        
+        $("#calendar1").JSONEventCalendar();
     });
 </script>
 </body>
