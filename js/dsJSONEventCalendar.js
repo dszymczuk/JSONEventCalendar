@@ -6,25 +6,31 @@
  */
 
 
-var dsJSONEventCalendar = (function dsJSONEventCalendar() {
-    var _language = {
-        lang: "en"
-    };
-    
-    function _private(){
-        return "private";
+(function( $ ) {
+    $.fn.JSONEventCalendar = function(options) {
+        console.log("JSONEventCalendar");
+
+        var settings = $.extend({
+            color: "#556b2f",
+            backgroundColor: "white"
+        }, options );
+
+
+        return this.each( function() {
+//            $(this).html(text);
+            var that = $(this);
+            console.log(that);
+            that.on('click','.ds-next-month',function(){
+                console.log(".ds-next-month");
+            })
+        });
+
     }
+}( jQuery ));
 
-    // Return the constructor
-    return function dsJSONEventCalendar() {
-        var that = this;
 
-        that.someMethod = function () {
-            return _privateVars.someVar;
-        };
 
-        that.someOtherMethod = function () {
-            console.log(_private());
-        };
-    };
-}());
+
+
+
+var data = [];

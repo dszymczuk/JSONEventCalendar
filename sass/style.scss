@@ -27,7 +27,7 @@ $eventColorBorder: #27330d;
 
 
 .ds-calendar {
-  $maxSizeDay: floor(100%/7);
+  $maxSizeDay: 100%/7;
   
   width: 1000px;
   background-color: wheat;
@@ -83,6 +83,7 @@ $eventColorBorder: #27330d;
     .ds-day {
       @include size($maxSizeDay,20px);
       background-color: $dayTitleColor;
+      box-sizing: border-box;
     }
   }
   .ds-day {
@@ -90,6 +91,7 @@ $eventColorBorder: #27330d;
     background-color: $dayColor;
     border: 1px solid $dayColorBorder;
     float: left;
+    box-sizing: border-box;
     &.ds-new-week {
       clear: left;
     }
