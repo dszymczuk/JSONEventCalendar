@@ -25,7 +25,6 @@
             <div class="ds-prev-month"><span>&lt;</span></div>
             <div class="ds-title-month">July 2014</div>
             <div class="ds-next-month"><span>&gt;</span></div>
-
         </div>
         <div class="ds-title">
             <div class="ds-day ds-new-week">Monday</div>
@@ -195,10 +194,7 @@
     
 </div>
 
-<div id="test">
-<div class="ds-next-month">
-    asdasdasd
-</div>
+<div class="test">
 </div>
 
 
@@ -208,7 +204,9 @@
 <script src="js/dsJSONEventCalendar.js"></script>
 <script>
     $(document).ready(function(){
-        $("#calendar1").JSONEventCalendar({},{});
+        $("#calendar1").JSONEventCalendar({},{
+            mode: 'calendar'
+        });
     });
 </script>
 </body>
