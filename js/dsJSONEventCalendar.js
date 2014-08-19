@@ -10,6 +10,16 @@
     $.fn.JSONEventCalendar = function(events,options) {
 
         var settings = $.extend($.fn.JSONEventCalendar.settings, options );
+        
+        var initMoment = moment();
+        initMoment.locale(settings.lang);
+        
+        var names = {
+            monthNames: initMoment._locale._months,
+            dayNames: initMoment._locale._weekdays,
+            dayNamesShort: initMoment._locale._weekdaysShort,
+            dayNamesMin: initMoment._locale._weekdaysMin
+        };
 
         return this.each( function() {
             var that = $(this);
@@ -25,17 +35,53 @@
             that.html(draw(that,options.mode,{
                 formatTitle: settings.formatTitle,
                 lang: settings.lang
-//                ,year: 2014
-//                ,month: 8
+                ,year: year
+                ,month: month
             }));
             _refreshDayHeight(that);
 
 
 
 
-            that.on('click','.ds-day',function(){
-//                console.log(settings.monthNames);
+            //next month
+            that.on('click','.ds-next-month',function(){
+                if(month > 11)
+                {
+                    month = 0;
+                    year++;
+                }
+                else
+                    month++;
 
+                console.warn(month,year);
+                that.html(draw(that,options.mode,{
+                    formatTitle: settings.formatTitle,
+                    lang: settings.lang
+                    ,year: year
+                    ,month: month
+                }));
+                _refreshDayHeight(that);
+            });
+            
+            //prev month
+            that.on('click','.ds-prev-month',function(){
+//                console.log("jer: ",year);
+                if(month < 0)
+                {
+                    month=11;
+                    year--;
+                }
+                else
+                    month--;
+
+                console.warn(month,year);
+                that.html(draw(that,options.mode,{
+                    formatTitle: settings.formatTitle,
+                    lang: settings.lang
+                    ,year: year
+                    ,month: month
+                }));
+                _refreshDayHeight(that);
             });
         });
 
@@ -100,6 +146,9 @@
             else
                 month = mom.get('month');
 
+            
+            mom.set('year',year);
+            mom.set('month',month);
             console.info(year,month,monthDays(year,month));
             mom.locale(settings.lang);
 
@@ -117,12 +166,17 @@
             // name of days
             calendar += '<div class="ds-title">';
 
-            var offset = calcStartFrom(settings.startFrom);
+            var offset = settings.startFrom;
+
+            console.log(mom._locale);
 
 
-            calendar += '<div class="ds-day ds-new-week">'+settings.dayNames[offset]+'</div>';
+//            calendar += '<div class="ds-day ds-new-week">'+settings.dayNames[offset]+'</div>';
+            calendar += '<div class="ds-day ds-new-week">'+names.dayNames[offset]+'</div>';
             for(var i = 1 + offset ; i < 7 + offset ; i++)
-                calendar += '<div class="ds-day">'+settings.dayNames[i%7]+'</div>';
+                calendar += '<div class="ds-day">'+names.dayNames[i%7]+'</div>';
+            
+//                calendar += '<div class="ds-day">'+settings.dayNames[i%7]+'</div>';
             calendar += '</div>';
 
 //            for(var i = 0 ; i < 12 ; i++)
@@ -181,11 +235,6 @@
                 return d.getDate();
             }
 
-            function calcStartFrom(dayName)
-            {
-                return settings.dayNames.indexOf(dayName);
-            }
-
             function firstDayPosition(year,month,offset) {
                 var mom = moment();
                 mom.set('year',year);
@@ -211,12 +260,9 @@ $.fn.JSONEventCalendar.settings = {
 //    format: "DD-MM-YYYY",
     formatTitle: "MMMM YYYY",
     formatEvent: "DD MMMM YYYY",
-    startFrom: "Monday",
+    startFrom: 1, //0 - Sunday, 1 - Monday etc.
     eventsInDay: 3,
-    mode: 'calendar',
-    monthNames: [ "January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December" ],
-    dayNames: [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday','Thursday', 'Friday', 'Saturday' ],
-    dayNamesShort: [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ]
+    mode: 'calendar'
 };
 
 

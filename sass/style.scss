@@ -85,6 +85,8 @@ $eventColorBorder: #27330d;
       @include size($maxSizeDay,20px);
       background-color: $dayTitleColor;
       box-sizing: border-box;
+      text-transform: uppercase;
+      text-align: center;
     }
   }
   .ds-day {
