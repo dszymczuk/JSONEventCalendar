@@ -24,6 +24,10 @@ $dayHeaderColor: #296638;
 $eventsColor: #1f4d2a;
 $eventColor: #9acd32;
 $eventColorBorder: #27330d;
+$dayBefore: #993a26;
+//$dayBefore: #3d9953;
+//$dayAfter: #296637;
+$dayAfter: #2c3066;
 
 
 .ds-calendar {
@@ -32,7 +36,11 @@ $eventColorBorder: #27330d;
   width: 1000px;
   background-color: wheat;
   overflow: hidden;
+  color: white;
   
+  /*---------------------*\
+    Header of calendar (name of current month)
+  \*---------------------*/
   .ds-calendar-header {
     text-align: center;
     background-color: $calendarHeader;
@@ -77,9 +85,11 @@ $eventColorBorder: #27330d;
     }
 
   }
-  
-  
-  color: white;
+
+
+  /*---------------------*\
+    Names of week
+  \*---------------------*/
   .ds-title {
     .ds-day {
       @include size($maxSizeDay,20px);
@@ -89,27 +99,64 @@ $eventColorBorder: #27330d;
       text-align: center;
     }
   }
+
+
+  /*---------------------*\
+    One day element
+  \*---------------------*/
   .ds-day {
     @include size($maxSizeDay,auto);
     background-color: $dayColor;
     border: 1px solid $dayColorBorder;
     float: left;
     box-sizing: border-box;
+    .ds-events {
+      overflow: hidden;
+    }
+    .ds-day-header {
+      text-align: center;
+    }
+    &.before {
+      .ds-day-header {
+        @extend .ds-day-header;
+        background-color: $dayBefore;
+      }
+      .ds-events {
+        @extend .ds-events;
+        background-color: lighten($dayBefore,20%);
+      }
+    }
+    &.current {
+      .ds-day-header {
+        @extend .ds-day-header;
+        background-color: $dayHeaderColor;
+      }
+      .ds-events {
+        @extend .ds-events;
+        background-color: lighten($dayHeaderColor,20%);
+      }
+    }
+    &.after {
+      .ds-day-header {
+        @extend .ds-day-header;
+        background-color: $dayAfter;
+      }
+      .ds-events {
+        @extend .ds-events;
+        background-color: lighten($dayAfter,20%);
+      }
+    }
     &.ds-new-week {
       clear: left;
     }
-    .ds-day-header {
-      background-color: $dayHeaderColor;
-    }
-    .ds-events {
-//      @include size(50px,50px);
-      background-color: $eventsColor;
-      overflow: hidden;
-    }
+
+    /*---------------------*\
+      One event in day
+    \*---------------------*/
     .ds-event {
       background-color: $eventColor;
-      @include size(25px);
-      float: left;
+      width: 80%;
+      margin: 0 auto;
       border: 1px solid $eventColorBorder;
     }
   }

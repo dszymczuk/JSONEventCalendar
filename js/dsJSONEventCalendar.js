@@ -189,13 +189,13 @@
 
             for(var b = 0 ; b < firstDayPosition(2014,month,0)-1 ; b++)
             {
-                calendar += drawDay('b'+b);
+                calendar += drawDay('b'+b,[],'before');
             }
 
 
             for(var c = 1 ; c <= monthDays(2014,month) ; c++)
             {
-                calendar += drawDay('c'+c);
+                calendar += drawDay('c'+c,[],'current');
             }
 
             console.log(b,c);
@@ -205,7 +205,7 @@
             {
                 for(var a = 0 ; a <= 7-firstDayPosition(2014,month+1,0) ; a++)
                 {
-                    calendar += drawDay('a'+a);
+                    calendar += drawDay('a'+a,[],'after');
                 }
             }
 
@@ -220,11 +220,20 @@
             calendar += '</div>';
             return calendar;
 
-            function drawDay(date){
+            function drawDay(day,events,elementClass){
+                if(typeof elementClass === 'undefined')
+                    elementClass = '';
                 var dD = '';
-                dD += '<div class="ds-day">';
-                dD += '<div class="ds-day-header">'+date+'</div>';
-                dD += '<div class="ds-events"></div>';
+                dD += '<div class="ds-day '+elementClass+'">';
+                dD += '<div class="ds-day-header">'+day+'</div>';
+                dD += '<div class="ds-events">';
+
+                dD += '<div class="ds-event">a</div>';
+                dD += '<div class="ds-event">a</div>';
+                dD += '<div class="ds-event">a</div>';
+
+                
+                dD += '</div>';
                 dD += '</div>';
                 return dD;
             }
