@@ -53,7 +53,7 @@
                 else
                     month++;
 
-                console.warn(month,year);
+//                console.warn(month,year);
                 that.html(draw(that,options.mode,{
                     formatTitle: settings.formatTitle,
                     lang: settings.lang
@@ -74,7 +74,7 @@
                 else
                     month--;
 
-                console.warn(month,year);
+//                console.warn(month,year);
                 that.html(draw(that,options.mode,{
                     formatTitle: settings.formatTitle,
                     lang: settings.lang
@@ -147,14 +147,16 @@
                 month = mom.get('month');
 
             
+//            month = 5;
+            
             mom.set('year',year);
             mom.set('month',month);
-            console.info(year,month,monthDays(year,month));
+//            console.info(year,month,monthDays(year,month));
             mom.locale(settings.lang);
 
             var calendar = '<div class="ds-calendar">';
 
-            console.log(options);
+//            console.log(options);
 
             //header
             calendar += '<div class="ds-calendar-header-border">';
@@ -170,7 +172,7 @@
 
             var offset = settings.startFrom;
 
-            console.log(mom._locale);
+//            console.log(mom._locale);
 
 
 //            calendar += '<div class="ds-day ds-new-week">'+settings.dayNames[offset]+'</div>';
@@ -189,7 +191,10 @@
 
 //            month++;
 
-            for(var b = 0 ; b < firstDayPosition(2014,month,0)-1 ; b++)
+//            console.log(_calcBefore(year,month));
+//            console.warn(firstDayPosition(year,month,0));
+            
+            for(var b = 0 ; b < _calcBefore(year,month) ; b++)
             {
                 calendar += drawDay('b'+b,[],'before');
             }
@@ -200,16 +205,27 @@
                 calendar += drawDay('c'+c,[],'current');
             }
 
-            console.log(b,c);
 
+           
+            var cA = _calcAfter(year,month);
 
-            if(firstDayPosition(2014,month+1,0) !== 1)
+            if(cA !== 1)
             {
-                for(var a = 0 ; a <= 7-firstDayPosition(2014,month+1,0) ; a++)
+                for(var a = 0 ; a <= 7-cA ; a++)
                 {
                     calendar += drawDay('a'+a,[],'after');
                 }
             }
+
+            //to have 6 rows in calendar
+            if(cA !== 2 && cA !== 0 && cA !== 3)
+            {
+                for(var a = 0 ; a < 7 ; a++)
+                {
+                    calendar += drawDay('a s'+a,[],'super after');
+                }
+            }
+
 
 
 
@@ -239,6 +255,35 @@
                 dD += '</div>';
                 return dD;
             }
+            
+            function _calcBefore(year,month){
+                if(month < 0)
+                {
+                    month=11;
+                    year--;
+                }
+                
+//                console.log(firstDayPosition(year,month,0)-1);
+                
+                var f = firstDayPosition(year,month,0)-1;
+               
+                
+                if(f < 0)
+                    return 6;
+                else
+                    return f;
+            }
+
+            function _calcAfter(year,month){
+                month++;
+                if(month > 11)
+                {
+                    month = 0;
+                    year++;
+                }
+
+                return firstDayPosition(year,month,0);
+            }
 
             function monthDays(year,month) {
                 month++;
@@ -251,7 +296,7 @@
                 mom.set('year',year);
                 mom.set('month',month);
                 mom.date(1);
-                console.log(mom.format('DD MM YYYY'));
+//                console.log(mom.format('DD MM YYYY'));
                 return mom.day()+offset;
             }
         }
