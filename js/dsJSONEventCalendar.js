@@ -153,6 +153,36 @@
             mom.set('month',month);
 //            console.info(year,month,monthDays(year,month));
             mom.locale(settings.lang);
+            
+            
+            
+            var before = {
+                month: month,
+                year: year
+            };
+            var after = {
+                month: month,
+                year: year
+            };
+
+            /*---------------------------*\
+                CALCUALTE BEFORE MONTH
+            \*---------------------------*/
+            if(month < 0)
+            {
+                before.month=11;
+                before.year--;
+            }
+
+            /*---------------------------*\
+                CALCUALTE AFTER MONTH
+            \*---------------------------*/
+            if(month+1 > 11)
+            {
+                after.month = 0;
+                after.year++;
+            }
+            
 
             var calendar = '<div class="ds-calendar">';
 
@@ -180,40 +210,44 @@
             for(var i = 1 + offset ; i < 7 + offset ; i++)
                 calendar += '<div class="ds-day">'+names.dayNames[i%7]+'</div>';
             
-//                calendar += '<div class="ds-day">'+settings.dayNames[i%7]+'</div>';
             calendar += '</div>';
 
-//            for(var i = 0 ; i < 12 ; i++)
-//            {
-//                console.warn(i+1,settings.dayNames[firstDayPosition(2014,i,0)]);
-//                console.info(firstDayPosition(2014,i,0));
-//            }
 
-//            month++;
-
-//            console.log(_calcBefore(year,month));
-//            console.warn(firstDayPosition(year,month,0));
+            
+            
+            
+            /*-----------*\
+                MONTH -1
+            \*-----------*/
+             
             
             for(var b = 0 ; b < _calcBefore(year,month) ; b++)
+//            for(var b = 0 ; b < _calcBefore(before.year,before.month) ; b++)
             {
-                calendar += drawDay('b'+b,[],'before');
+                calendar += drawDay(month-1 + " :: "+b,[],'before');
             }
 
 
+            /*-----------------*\
+                CUREENT MONTH
+            \*-----------------*/
             for(var c = 1 ; c <= monthDays(2014,month) ; c++)
             {
-                calendar += drawDay('c'+c,[],'current');
+                calendar += drawDay(month+ " :: "+c,[],'current');
             }
 
 
-           
+            /*------------*\
+                MONTH +1
+            \*------------*/
             var cA = _calcAfter(year,month);
-
+//            var cA = _calcAfter(after.year,after.month);
+//
             if(cA !== 1)
             {
                 for(var a = 0 ; a <= 7-cA ; a++)
                 {
-                    calendar += drawDay('a'+a,[],'after');
+                    calendar += drawDay(month+1 + " :: "+a,[],'after');
                 }
             }
 
@@ -222,7 +256,7 @@
             {
                 for(var a = 0 ; a < 7 ; a++)
                 {
-                    calendar += drawDay('a s'+a,[],'super after');
+                    calendar += drawDay(month+1 + " :: "+a,[],'super after');
                 }
             }
 
@@ -257,17 +291,17 @@
             }
             
             function _calcBefore(year,month){
-                if(month < 0)
-                {
-                    month=11;
-                    year--;
-                }
+                console.log("Before: ",month,year);
                 
-//                console.log(firstDayPosition(year,month,0)-1);
-                
+//                if(month < 0)
+//                {
+//                    month=11;
+//                    year--;
+//                }
+
                 var f = firstDayPosition(year,month,0)-1;
+
                
-                
                 if(f < 0)
                     return 6;
                 else
@@ -275,12 +309,15 @@
             }
 
             function _calcAfter(year,month){
+                console.log("After: ",month,year);
+                
                 month++;
-                if(month > 11)
-                {
-                    month = 0;
-                    year++;
-                }
+//                if(month > 11)
+//                {
+//                    month = 0;
+//                    year++;
+//                }
+                
 
                 return firstDayPosition(year,month,0);
             }
