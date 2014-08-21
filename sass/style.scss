@@ -1,4 +1,5 @@
 @import "reset";
+@import "compass/css3/border-radius";
 
 @mixin size($width,$height : nil) {
   @if($height == nil)
@@ -16,6 +17,7 @@
 
 /* COLORS */
 $calendarHeader: #286c41;
+$borderHeaderColor: #1b4528;
 $dayTitleColor: #14331c;
 
 $dayColor: #338046;
@@ -41,46 +43,64 @@ $dayAfter: #2c3066;
   /*---------------------*\
     Header of calendar (name of current month)
   \*---------------------*/
+  .ds-calendar-header-border {
+    background-color: white;
+    margin: 5px 0;
+    padding: 3px 0;
+    border-bottom: 2px solid $borderHeaderColor;
+    border-top: 2px solid $borderHeaderColor;
+  }
+  
   .ds-calendar-header {
     text-align: center;
     background-color: $calendarHeader;
     position: relative;
-
-    .ds-prev-month {
+    height: 20px;
+    
+    .arrow {
       display: inline-block;
       position: absolute;
-      left: 0;
       span {
         height: 0;
         width: 0;
         font-size: 0;
         line-height: 0;
-        border-top: 6px solid transparent;
-        border-bottom: 6px solid transparent;
-        float: left;
         text-indent: -5000px;
-        border-left-width: 0;
-        border-right: 6px solid #fff;
+        margin-top: 3px;
+        cursor: pointer;
+        transition: border-color 0.5s ease;
+      }
+    }
+
+    .ds-prev-month {
+      @extend .arrow;
+      left: 5px;
+      span {
+        float: left;
+        border-style: solid;
+        border-width: 7.5px 13.0px 7.5px 0;
+        border-color: transparent #ffffff transparent transparent;
+        &:hover {
+          border-color: transparent red transparent transparent ;
+        }
       }
     }
     .ds-title-month {
       display: inline-block;
       text-transform: uppercase;
+      margin-top: 3px;
     }
     .ds-next-month{
-      display: inline-block;
-      position: absolute;
-      right: 0;
+      @extend .arrow;
+      right: 5px;
       span {
-        height: 0;
-        width: 0;
-        font-size: 0;
-        line-height: 0;
-        border-top: 6px solid transparent;
-        border-bottom: 6px solid transparent;
-        border-left: 6px solid #fff;
         float: left;
-        text-indent: -5000px;
+        border-style: solid;
+        border-width: 7.5px 0px 7.5px 13px;
+        border-color: transparent transparent transparent #ffffff;
+        &:hover {
+          border-color: transparent transparent transparent red;
+        }
       }
     }
 
@@ -97,6 +117,8 @@ $dayAfter: #2c3066;
       box-sizing: border-box;
       text-transform: uppercase;
       text-align: center;
+      height: 22px;
+      line-height: 1.4;
     }
   }
 
@@ -115,6 +137,7 @@ $dayAfter: #2c3066;
     }
     .ds-day-header {
       text-align: center;
+      padding: 1px 0px 1px 10px;
     }
     &.before {
       .ds-day-header {
@@ -158,6 +181,11 @@ $dayAfter: #2c3066;
       width: 80%;
       margin: 0 auto;
       border: 1px solid $eventColorBorder;
+      @include border-radius(4px);
+      margin-top: 2px;
+      &:last-child {
+        margin-bottom: 2px;
+      }
     }
   }
 }

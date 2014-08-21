@@ -157,10 +157,12 @@
             console.log(options);
 
             //header
+            calendar += '<div class="ds-calendar-header-border">';
             calendar += '<div class="ds-calendar-header">';
-            calendar += '<div class="ds-prev-month"><span>&lt;</span></div>';
+            calendar += '<div class="ds-prev-month arrow"><span>&lt;</span></div>';
             calendar += '<div class="ds-title-month">'+mom.format(settings.formatTitle)+'</div>';
-            calendar += '<div class="ds-next-month"><span>&gt;</span></div>';
+            calendar += '<div class="ds-next-month arrow"><span>&gt;</span></div>';
+            calendar += '</div>';
             calendar += '</div>';
 
             // name of days
