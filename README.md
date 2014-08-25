@@ -13,7 +13,7 @@ You can set own date format to show on list of events, choose colors of evetns a
 Progress
 -----------
 
-
+![progress of project](http://dszymczuk.pl/progressbar/)
 
 
 
