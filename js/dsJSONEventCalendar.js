@@ -83,6 +83,19 @@
                 }));
                 _refreshDayHeight(that);
             });
+            
+            //event click
+            that.on('click','.ds-event',function(){      
+                var elem = $(this);
+                var id = elem[0].id;
+
+                var event =  _.find(events, function(e) {
+                    return e.id == id;
+                });
+                
+                console.warn(event);
+            });
+            
         });
 
         function draw(element$,mode,options) {
@@ -93,7 +106,7 @@
                 return "Can't draw calendar - options in draw is undefined";
 
             var html = "";
-            html += '<div id="'+element$[0].id+'" class="dsJSONEventCalendar">';
+//            html += '<div id="'+element$[0].id+'" class="dsJSONEventCalendar">';
 
             switch (mode) {
                 case 'calendar':
@@ -108,7 +121,8 @@
                     break;
             }
 
-            html += '</div>';
+            html += _drawEvent();
+//            html += '</div>';
             return html;
         }
 
@@ -285,7 +299,7 @@
                 var events = _getEvents(day,month,year);
                 for(var e = 0 ; e < events.length ; e++)
                 {
-                    dD += '<div class="ds-event">'+events[e].id+'</div>';
+                    dD += '<div class="ds-event" id="'+events[e].id+'">'+events[e].title+'</div>';
                 }
                
                 dD += '</div>';
@@ -349,7 +363,15 @@
         }
 
         function _drawEvent(eventId){
+            var eventDetails = "";
 
+            eventDetails += '<div id="overlay">';
+            eventDetails += '    <div>';
+            eventDetails += '        <p>Content you want the user to see goes here.</p>';
+            eventDetails += '    </div>';
+            eventDetails += '</div>';
+            
+            return eventDetails;
         }
     }
 }( jQuery ));
