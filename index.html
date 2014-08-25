@@ -199,12 +199,13 @@
 
 
 
+<script src="sample_data.js"></script>
 <script src="js/jquery.js"></script>
 <script src="js/moment-with-locales.min.js"></script>
 <script src="js/dsJSONEventCalendar.js"></script>
 <script>
     $(document).ready(function(){
-        $("#calendar1").JSONEventCalendar({},{
+        $("#calendar1").JSONEventCalendar(sampleEvents,{
             mode: 'calendar'
         });
     });

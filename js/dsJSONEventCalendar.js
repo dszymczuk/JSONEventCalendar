@@ -100,11 +100,11 @@
                     html += _drawCalendar(options);
                     break;
                 case 'list':
-                    html += _drawList(options);
+                    html += _drawEvent(options);
                     break;
                 default :
                     html += _drawCalendar(options);
-                    html += _drawList(options);
+                    html += _drawEvent(options);
                     break;
             }
 
@@ -273,6 +273,8 @@
             return calendar;
 
             function drawDay(day,events,elementClass){
+                
+                
                 if(typeof elementClass === 'undefined')
                     elementClass = '';
                 var dD = '';
@@ -291,7 +293,7 @@
             }
             
             function _calcBefore(year,month){
-                console.log("Before: ",month,year);
+//                console.log("Before: ",month,year);
                 
 //                if(month < 0)
 //                {
@@ -309,7 +311,7 @@
             }
 
             function _calcAfter(year,month){
-                console.log("After: ",month,year);
+//                console.log("After: ",month,year);
                 
                 month++;
 //                if(month > 11)
@@ -338,7 +340,7 @@
             }
         }
 
-        function _drawList(){
+        function _drawEvent(eventId){
 
         }
     }
