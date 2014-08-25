@@ -224,7 +224,7 @@
             for(var b = 0 ; b < _calcBefore(year,month) ; b++)
 //            for(var b = 0 ; b < _calcBefore(before.year,before.month) ; b++)
             {
-                calendar += drawDay(month-1 + " :: "+b,[],'before');
+                calendar += drawDay(b,'before');
             }
 
 
@@ -233,7 +233,7 @@
             \*-----------------*/
             for(var c = 1 ; c <= monthDays(2014,month) ; c++)
             {
-                calendar += drawDay(month+ " :: "+c,[],'current');
+                calendar += drawDay(c,'current');
             }
 
 
@@ -247,16 +247,16 @@
             {
                 for(var a = 0 ; a <= 7-cA ; a++)
                 {
-                    calendar += drawDay(month+1 + " :: "+a,[],'after');
+                    calendar += drawDay(a,'after');
                 }
             }
-
+            
             //to have 6 rows in calendar
-            if(cA !== 2 && cA !== 0 && cA !== 3)
+            if(cA !== 2 && cA !== 0)
             {
                 for(var a = 0 ; a < 7 ; a++)
                 {
-                    calendar += drawDay(month+1 + " :: "+a,[],'super after');
+                    calendar += drawDay(a,'super after');
                 }
             }
 
@@ -272,7 +272,7 @@
             calendar += '</div>';
             return calendar;
 
-            function drawDay(day,events,elementClass){
+            function drawDay(day,elementClass){
                 
                 
                 if(typeof elementClass === 'undefined')
@@ -281,12 +281,13 @@
                 dD += '<div class="ds-day '+elementClass+'">';
                 dD += '<div class="ds-day-header">'+day+'</div>';
                 dD += '<div class="ds-events">';
-
-                dD += '<div class="ds-event">a</div>';
-                dD += '<div class="ds-event">a</div>';
-                dD += '<div class="ds-event">a</div>';
-
                 
+                var events = _getEvents(day,month,year);
+                for(var e = 0 ; e < events.length ; e++)
+                {
+                    dD += '<div class="ds-event">'+events[e].id+'</div>';
+                }
+               
                 dD += '</div>';
                 dD += '</div>';
                 return dD;
@@ -322,6 +323,13 @@
                 
 
                 return firstDayPosition(year,month,0);
+            }
+            
+            function _getEvents(day,month,year){
+                return _.filter(sampleEvents, function (sE) {
+                    return moment(new Date(year, month, day)) < new Date(sE.date) 
+                        && new Date(sE.date) < moment(new Date(year, month, day)).add(1, 'd');
+                });
             }
 
             function monthDays(year,month) {

@@ -202,12 +202,25 @@
 <script src="sample_data.js"></script>
 <script src="js/jquery.js"></script>
 <script src="js/moment-with-locales.min.js"></script>
+<script src="js/lodash.compat.min.js"></script>
 <script src="js/dsJSONEventCalendar.js"></script>
+
 <script>
     $(document).ready(function(){
         $("#calendar1").JSONEventCalendar(sampleEvents,{
             mode: 'calendar'
         });
+
+        
+        var retek = _.filter(sampleEvents, function(sE) {
+//            return new Date(2014,9,1) < new Date(sE.date);
+            return  moment(new Date(2014,8,13)) < new Date(sE.date) && new Date(sE.date) < moment(new Date(2014,8,13)).add(1,'d') ;
+//            return new Date(2014,8,12) == new Date(sE.date);
+//            return sE.type === "meeting";
+        });
+        
+//        console.log(retek);
+        
     });
 </script>
 </body>
