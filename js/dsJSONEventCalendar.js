@@ -94,6 +94,14 @@
                 });
                 
                 console.warn(event);
+                $(".ds-event-modal").css('visibility', 'visible');
+            });
+            that.on('click','.ds-event-modal',function(){
+                console.log("modal click");
+                var elem = $(this);
+                console.log(elem);
+               elem.css('visibility', 'hidden');
+               //elem.css('display', 'none');
             });
             
         });
@@ -113,15 +121,15 @@
                     html += _drawCalendar(options);
                     break;
                 case 'list':
-                    html += _drawEvent(options);
+                    html += _drawModalEvent(options);
                     break;
                 default :
                     html += _drawCalendar(options);
-                    html += _drawEvent(options);
+                    html += _drawModalEvent(options);
                     break;
             }
 
-            html += _drawEvent();
+            html += _drawModalEvent();
 //            html += '</div>';
             return html;
         }
@@ -362,13 +370,21 @@
             }
         }
 
-        function _drawEvent(eventId){
+        function _drawModalEvent(eventId){
             var eventDetails = "";
 
-            eventDetails += '<div id="overlay">';
-            eventDetails += '    <div>';
-            eventDetails += '        <p>Content you want the user to see goes here.</p>';
-            eventDetails += '    </div>';
+            eventDetails += '<div class="ds-event-modal">';
+            eventDetails += '	<div class="container">';
+            eventDetails += '		<div class="header">';
+            eventDetails += '			header';
+            eventDetails += '		</div>';
+            eventDetails += '		<div class="content">';
+            eventDetails += '			content';
+            eventDetails += '		</div>';
+            eventDetails += '		<div class="footer">';
+            eventDetails += '			footer';
+            eventDetails += '		</div>';
+            eventDetails += '	</div>';
             eventDetails += '</div>';
             
             return eventDetails;
