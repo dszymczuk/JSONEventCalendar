@@ -42,4 +42,4 @@ Changelog
 
 Languages
 -----------
-Only english at now
+Multilanguage - support by moment.js
