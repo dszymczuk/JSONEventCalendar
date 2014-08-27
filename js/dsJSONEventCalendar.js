@@ -93,14 +93,19 @@
                     return e.id == id;
                 });
                 
-                console.warn(event);
-                $(".ds-event-modal").css('visibility', 'visible');
+//                console.warn(event);
+                $(".ds-calendar").append(_drawModalEvent(event));
+//                $(".ds-event-modal").css('visibility', 'visible');
             });
-            that.on('click','.ds-event-modal',function(){
-                console.log("modal click");
+
+
+
+            that.on('click','.ds-event-modal .close-button',function(){
+//                console.log("modal click");
                 var elem = $(this);
-                console.log(elem);
-               elem.css('visibility', 'hidden');
+//                console.log(elem);
+//               elem.css('visibility', 'hidden');
+                $(".ds-event-modal").remove();
                //elem.css('display', 'none');
             });
             
@@ -121,15 +126,15 @@
                     html += _drawCalendar(options);
                     break;
                 case 'list':
-                    html += _drawModalEvent(options);
+//                    html += _drawModalEvent(options);
                     break;
                 default :
                     html += _drawCalendar(options);
-                    html += _drawModalEvent(options);
+//                    html += _drawModalEvent(options);
                     break;
             }
 
-            html += _drawModalEvent();
+//            html += _drawModalEvent();
 //            html += '</div>';
             return html;
         }
@@ -370,21 +375,24 @@
             }
         }
 
-        function _drawModalEvent(eventId){
+        function _drawModalEvent(event){
+            console.warn(event);
             var eventDetails = "";
 
             eventDetails += '<div class="ds-event-modal">';
-            eventDetails += '	<div class="container">';
-            eventDetails += '		<div class="header">';
-            eventDetails += '			header';
-            eventDetails += '		</div>';
-            eventDetails += '		<div class="content">';
-            eventDetails += '			content';
-            eventDetails += '		</div>';
-            eventDetails += '		<div class="footer">';
-            eventDetails += '			footer';
-            eventDetails += '		</div>';
-            eventDetails += '	</div>';
+            eventDetails += '<div class="container">';
+            eventDetails += '<div class="header">';
+            eventDetails += 'header';
+            eventDetails += '</div>';
+            eventDetails += '<div class="content">';
+            eventDetails += 'content';
+            eventDetails += '</div>';
+            eventDetails += '<div class="footer">';
+            eventDetails += '<div class="close-button">';
+            eventDetails += 'close';
+            eventDetails += '</div>';
+            eventDetails += '</div>';
+            eventDetails += '</div>';
             eventDetails += '</div>';
             
             return eventDetails;
