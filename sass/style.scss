@@ -39,6 +39,7 @@ $dayAfter: #2c3066;
   background-color: wheat;
   overflow: hidden;
   color: white;
+  position: relative;
   
   /*---------------------*\
     Header of calendar (name of current month)
@@ -211,7 +212,7 @@ $dayAfter: #2c3066;
     z-index: 1000;
     .container {
       width:500px;
-      margin: 20% auto;
+      margin: 100px auto;
       background-color: #fff;
       border:1px solid #000;
       padding:15px;
@@ -220,9 +221,24 @@ $dayAfter: #2c3066;
       border-radius: 10px;
       .header {
         background: azure;
+        .title {
+          text-transform: uppercase;
+        }
+        .date {
+          text-transform: uppercase;
+        }
       }
       .content {
         background: whitesmoke;
+        .type {
+
+        }
+        .description {
+
+        }
+        .url {
+
+        }
       }
       .footer {
         background: lightblue;
