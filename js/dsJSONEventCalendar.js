@@ -93,7 +93,20 @@
                     return e.id == id;
                 });
                 
-                console.warn(event);
+//                console.warn(event);
+                $(".ds-calendar").append(_drawModalEvent(event));
+//                $(".ds-event-modal").css('visibility', 'visible');
+            });
+
+
+
+            that.on('click','.ds-event-modal .close-button',function(){
+//                console.log("modal click");
+                var elem = $(this);
+//                console.log(elem);
+//               elem.css('visibility', 'hidden');
+                $(".ds-event-modal").remove();
+               //elem.css('display', 'none');
             });
             
         });
@@ -113,15 +126,15 @@
                     html += _drawCalendar(options);
                     break;
                 case 'list':
-                    html += _drawEvent(options);
+//                    html += _drawModalEvent(options);
                     break;
                 default :
                     html += _drawCalendar(options);
-                    html += _drawEvent(options);
+//                    html += _drawModalEvent(options);
                     break;
             }
 
-            html += _drawEvent();
+//            html += _drawModalEvent();
 //            html += '</div>';
             return html;
         }
@@ -362,13 +375,27 @@
             }
         }
 
-        function _drawEvent(eventId){
+        function _drawModalEvent(event){
+            console.warn(event);
             var eventDetails = "";
 
-            eventDetails += '<div id="overlay">';
-            eventDetails += '    <div>';
-            eventDetails += '        <p>Content you want the user to see goes here.</p>';
-            eventDetails += '    </div>';
+            eventDetails += '<div class="ds-event-modal">';
+            eventDetails += '<div class="container">';
+            eventDetails += '<div class="header">';
+            eventDetails += '<p class="title">'+event.title+'</p>';
+            eventDetails += '<p class="date">'+moment(event.date).locale(settings.lang).format(settings.formatEvent)+'</p>';
+            eventDetails += '</div>';
+            eventDetails += '<div class="content">';
+            eventDetails += '<p class="type">'+event.type+'</p>';
+            eventDetails += '<p class="description">'+event.description+'</p>';
+            eventDetails += '<p class="url">'+event.url+'</p>';
+            eventDetails += '</div>';
+            eventDetails += '<div class="footer">';
+            eventDetails += '<div class="close-button">';
+            eventDetails += settings.closeText;
+            eventDetails += '</div>';
+            eventDetails += '</div>';
+            eventDetails += '</div>';
             eventDetails += '</div>';
             
             return eventDetails;
@@ -387,7 +414,8 @@ $.fn.JSONEventCalendar.settings = {
     formatEvent: "DD MMMM YYYY",
     startFrom: 1, //0 - Sunday, 1 - Monday etc.
     eventsInDay: 3,
-    mode: 'calendar'
+    mode: 'calendar',
+    closeText: 'close'
 };
 
 
