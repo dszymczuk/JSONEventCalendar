@@ -170,6 +170,16 @@ $dayAfter: #2c3066;
         background-color: lighten($dayAfter,20%);
       }
     }
+    &.super {
+      .ds-day-header {
+        @extend .ds-day-header;
+        background-color: darken($dayAfter,20%);
+      }
+      .ds-events {
+        @extend .ds-events;
+        background-color: darken(darken($dayAfter,20%),20%);
+      }
+    }
     &.ds-new-week {
       clear: left;
     }

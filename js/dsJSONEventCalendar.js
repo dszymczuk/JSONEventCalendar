@@ -45,7 +45,7 @@
 
             //next month
             that.on('click','.ds-next-month',function(){
-                if(month > 11)
+                if(month > 10)
                 {
                     month = 0;
                     year++;
@@ -54,6 +54,7 @@
                     month++;
 
 //                console.warn(month,year);
+
                 that.html(draw(that,options.mode,{
                     formatTitle: settings.formatTitle,
                     lang: settings.lang
@@ -62,11 +63,11 @@
                 }));
                 _refreshDayHeight(that);
             });
-            
+
             //prev month
             that.on('click','.ds-prev-month',function(){
 //                console.log("jer: ",year);
-                if(month < 0)
+                if(month < 1)
                 {
                     month=11;
                     year--;
@@ -83,16 +84,16 @@
                 }));
                 _refreshDayHeight(that);
             });
-            
+
             //event click
-            that.on('click','.ds-event',function(){      
+            that.on('click','.ds-event',function(){
                 var elem = $(this);
                 var id = elem[0].id;
 
                 var event =  _.find(events, function(e) {
                     return e.id == id;
                 });
-                
+
 //                console.warn(event);
                 $(".ds-calendar").append(_drawModalEvent(event));
 //                $(".ds-event-modal").css('visibility', 'visible');
@@ -187,6 +188,7 @@
                 month: month,
                 year: year
             };
+            before.month--;
             var after = {
                 month: month,
                 year: year
@@ -246,46 +248,50 @@
             /*-----------*\
                 MONTH -1
             \*-----------*/
-             
-            
-            for(var b = 0 ; b < _calcBefore(year,month) ; b++)
-//            for(var b = 0 ; b < _calcBefore(before.year,before.month) ; b++)
+            var daysBefore = monthDays(before.year,before.month);
+            var calcBefore = _calcBefore(year,month);
+            daysBefore = daysBefore - calcBefore+1;
+
+            for(var b = 0 ; b < calcBefore ; b++)
             {
-                calendar += drawDay(b,'before');
+                calendar += drawDay(daysBefore+b,'before');
             }
 
 
             /*-----------------*\
                 CUREENT MONTH
             \*-----------------*/
-            for(var c = 1 ; c <= monthDays(2014,month) ; c++)
+            var currDaysInMonth = monthDays(year,month);
+            for(var c = 1 ; c <= currDaysInMonth ; c++)
             {
-                calendar += drawDay(c,'current');
+                calendar += drawDay(c,'current',true);
             }
 
 
             /*------------*\
                 MONTH +1
             \*------------*/
+            var nextMonth = 0;
             var cA = _calcAfter(year,month);
-//            var cA = _calcAfter(after.year,after.month);
-//
             if(cA !== 1)
             {
                 for(var a = 0 ; a <= 7-cA ; a++)
                 {
-                    calendar += drawDay(a,'after');
+                    nextMonth++;
+                    calendar += drawDay(nextMonth,'after');
                 }
             }
-            
+
             //to have 6 rows in calendar
-            if(cA !== 2 && cA !== 0)
-            {
-                for(var a = 0 ; a < 7 ; a++)
-                {
-                    calendar += drawDay(a,'super after');
-                }
-            }
+            //@todo to think
+//            if(cA !== 2 && cA !== 0)
+//            {
+//                for(var a = 0 ; a < 7 ; a++)
+//                {
+//                    nextMonth++;
+//                    calendar += drawDay(nextMonth,'super after');
+//                }
+//            }
 
 
 
@@ -299,8 +305,8 @@
             calendar += '</div>';
             return calendar;
 
-            function drawDay(day,elementClass){
-                
+            function drawDay(day,elementClass,drawEvents){
+                drawEvents = typeof drawEvents !== 'undefined' ? drawEvents : false;
                 
                 if(typeof elementClass === 'undefined')
                     elementClass = '';
@@ -308,13 +314,17 @@
                 dD += '<div class="ds-day '+elementClass+'">';
                 dD += '<div class="ds-day-header">'+day+'</div>';
                 dD += '<div class="ds-events">';
-                
-                var events = _getEvents(day,month,year);
-                for(var e = 0 ; e < events.length ; e++)
+
+                if(drawEvents)
                 {
-                    dD += '<div class="ds-event" id="'+events[e].id+'">'+events[e].title+'</div>';
+                    var events = _getEvents(day,month,year);
+                    for(var e = 0 ; e < events.length ; e++)
+                    {
+                        dD += '<div class="ds-event" id="'+events[e].id+'">'+events[e].title+'</div>';
+                    }
+
                 }
-               
+
                 dD += '</div>';
                 dD += '</div>';
                 return dD;
@@ -362,6 +372,7 @@
             function monthDays(year,month) {
                 month++;
                 var d = new Date(year,month, 0);
+//                console.log(d.getDate());
                 return d.getDate();
             }
 
