@@ -1,7 +1,7 @@
 /**
  * Author: Damian Szymczuk
  * Website: http://dszymczuk.pl
- * Version: 0.1
+ * Version: 0.2
  * GitHub: https://github.com/dszymczuk/JSONEventCalendar
  */
 
