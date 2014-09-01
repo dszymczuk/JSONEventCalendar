@@ -260,7 +260,7 @@
             \*-----------------*/
             for(var c = 1 ; c <= monthDays(2014,month) ; c++)
             {
-                calendar += drawDay(c,'current');
+                calendar += drawDay(c,'current',true);
             }
 
 
@@ -299,8 +299,8 @@
             calendar += '</div>';
             return calendar;
 
-            function drawDay(day,elementClass){
-                
+            function drawDay(day,elementClass,drawEvents){
+                drawEvents = typeof drawEvents !== 'undefined' ? drawEvents : false;
                 
                 if(typeof elementClass === 'undefined')
                     elementClass = '';
@@ -308,13 +308,17 @@
                 dD += '<div class="ds-day '+elementClass+'">';
                 dD += '<div class="ds-day-header">'+day+'</div>';
                 dD += '<div class="ds-events">';
-                
-                var events = _getEvents(day,month,year);
-                for(var e = 0 ; e < events.length ; e++)
+
+                if(drawEvents)
                 {
-                    dD += '<div class="ds-event" id="'+events[e].id+'">'+events[e].title+'</div>';
+                    var events = _getEvents(day,month,year);
+                    for(var e = 0 ; e < events.length ; e++)
+                    {
+                        dD += '<div class="ds-event" id="'+events[e].id+'">'+events[e].title+'</div>';
+                    }
+
                 }
-               
+
                 dD += '</div>';
                 dD += '</div>';
                 return dD;
