@@ -23,16 +23,10 @@
 
         return this.each( function() {
             var that = $(this);
-//            var m = moment();
-
-//            m.locale(settings.lang);
-//            m.format(settings.format);
-
-
             var year = moment().get('year');
             var month = moment().get('month');
 
-            that.html(draw(that,options.mode,{
+            that.html(_drawCalendar({
                 formatTitle: settings.formatTitle,
                 lang: settings.lang
                 ,year: year
@@ -41,9 +35,9 @@
             _refreshDayHeight(that);
 
 
-
-
-            //next month
+            /*------------*\
+               NEXT MONTH
+            \*------------*/
             that.on('click','.ds-next-month',function(){
                 if(month > 10)
                 {
@@ -53,9 +47,7 @@
                 else
                     month++;
 
-//                console.warn(month,year);
-
-                that.html(draw(that,options.mode,{
+                that.html(_drawCalendar({
                     formatTitle: settings.formatTitle,
                     lang: settings.lang
                     ,year: year
@@ -64,9 +56,11 @@
                 _refreshDayHeight(that);
             });
 
-            //prev month
+
+            /*------------*\
+               PREV MONTH
+            \*------------*/
             that.on('click','.ds-prev-month',function(){
-//                console.log("jer: ",year);
                 if(month < 1)
                 {
                     month=11;
@@ -75,8 +69,7 @@
                 else
                     month--;
 
-//                console.warn(month,year);
-                that.html(draw(that,options.mode,{
+                that.html(_drawCalendar({
                     formatTitle: settings.formatTitle,
                     lang: settings.lang
                     ,year: year
@@ -85,7 +78,10 @@
                 _refreshDayHeight(that);
             });
 
-            //event click
+
+            /*-------------*\
+               EVENT CLICK
+            \*-------------*/
             that.on('click','.ds-event',function(){
                 var elem = $(this);
                 var id = elem[0].id;
@@ -93,52 +89,20 @@
                 var event =  _.find(events, function(e) {
                     return e.id == id;
                 });
-
-//                console.warn(event);
                 $(".ds-calendar").append(_drawModalEvent(event));
-//                $(".ds-event-modal").css('visibility', 'visible');
             });
 
 
-
+            /*-------------*\
+               CLOSE MODAL
+            \*-------------*/
             that.on('click','.ds-event-modal .close-button',function(){
-//                console.log("modal click");
-                var elem = $(this);
-//                console.log(elem);
-//               elem.css('visibility', 'hidden');
                 $(".ds-event-modal").remove();
-               //elem.css('display', 'none');
             });
             
         });
 
-        function draw(element$,mode,options) {
-            if(typeof mode === 'undefined')
-                mode = 'both';
 
-            if(typeof options === 'undefined')
-                return "Can't draw calendar - options in draw is undefined";
-
-            var html = "";
-//            html += '<div id="'+element$[0].id+'" class="dsJSONEventCalendar">';
-
-            switch (mode) {
-                case 'calendar':
-                    html += _drawCalendar(options);
-                    break;
-                case 'list':
-//                    html += _drawModalEvent(options);
-                    break;
-                default :
-                    html += _drawCalendar(options);
-//                    html += _drawModalEvent(options);
-                    break;
-            }
-
-//            html += _drawModalEvent();
-//            html += '</div>';
-            return html;
-        }
 
 
 
@@ -174,25 +138,16 @@
             else
                 month = mom.get('month');
 
-            
-//            month = 5;
-            
+
             mom.set('year',year);
             mom.set('month',month);
-//            console.info(year,month,monthDays(year,month));
             mom.locale(settings.lang);
-            
-            
-            
+
             var before = {
                 month: month,
                 year: year
             };
             before.month--;
-            var after = {
-                month: month,
-                year: year
-            };
 
             /*---------------------------*\
                 CALCUALTE BEFORE MONTH
@@ -203,19 +158,8 @@
                 before.year--;
             }
 
-            /*---------------------------*\
-                CALCUALTE AFTER MONTH
-            \*---------------------------*/
-            if(month+1 > 11)
-            {
-                after.month = 0;
-                after.year++;
-            }
-            
 
             var calendar = '<div class="ds-calendar">';
-
-//            console.log(options);
 
             //header
             calendar += '<div class="ds-calendar-header-border">';
@@ -231,10 +175,6 @@
 
             var offset = settings.startFrom;
 
-//            console.log(mom._locale);
-
-
-//            calendar += '<div class="ds-day ds-new-week">'+settings.dayNames[offset]+'</div>';
             calendar += '<div class="ds-day ds-new-week">'+names.dayNames[offset]+'</div>';
             for(var i = 1 + offset ; i < 7 + offset ; i++)
                 calendar += '<div class="ds-day">'+names.dayNames[i%7]+'</div>';
@@ -242,8 +182,6 @@
             calendar += '</div>';
 
 
-            
-            
             
             /*-----------*\
                 MONTH -1
@@ -293,9 +231,6 @@
 //                }
 //            }
 
-
-
-
             calendar += '';
             calendar += '';
             calendar += '';
@@ -331,17 +266,8 @@
             }
             
             function _calcBefore(year,month){
-//                console.log("Before: ",month,year);
-                
-//                if(month < 0)
-//                {
-//                    month=11;
-//                    year--;
-//                }
-
                 var f = firstDayPosition(year,month,0)-1;
 
-               
                 if(f < 0)
                     return 6;
                 else
@@ -349,16 +275,7 @@
             }
 
             function _calcAfter(year,month){
-//                console.log("After: ",month,year);
-                
                 month++;
-//                if(month > 11)
-//                {
-//                    month = 0;
-//                    year++;
-//                }
-                
-
                 return firstDayPosition(year,month,0);
             }
             
@@ -372,7 +289,6 @@
             function monthDays(year,month) {
                 month++;
                 var d = new Date(year,month, 0);
-//                console.log(d.getDate());
                 return d.getDate();
             }
 
@@ -381,15 +297,12 @@
                 mom.set('year',year);
                 mom.set('month',month);
                 mom.date(1);
-//                console.log(mom.format('DD MM YYYY'));
                 return mom.day()+offset;
             }
         }
 
         function _drawModalEvent(event){
-            console.warn(event);
             var eventDetails = "";
-
             eventDetails += '<div class="ds-event-modal">';
             eventDetails += '<div class="container">';
             eventDetails += '<div class="header">';
@@ -408,16 +321,12 @@
             eventDetails += '</div>';
             eventDetails += '</div>';
             eventDetails += '</div>';
-            
             return eventDetails;
         }
     }
 }( jQuery ));
 
 
-/*
-mode - calendar, list, both
- */
 $.fn.JSONEventCalendar.settings = {
     lang: "pl",
 //    format: "DD-MM-YYYY",
@@ -425,7 +334,6 @@ $.fn.JSONEventCalendar.settings = {
     formatEvent: "DD MMMM YYYY",
     startFrom: 1, //0 - Sunday, 1 - Monday etc.
     eventsInDay: 3,
-    mode: 'calendar',
     closeText: 'close'
 };
 
