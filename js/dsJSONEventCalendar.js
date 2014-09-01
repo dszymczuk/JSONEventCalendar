@@ -248,8 +248,6 @@
             /*-----------*\
                 MONTH -1
             \*-----------*/
-
-//            var monthBefore = monthDays(year,month);
             var daysBefore = monthDays(before.year,before.month);
             var calcBefore = _calcBefore(year,month);
             daysBefore = daysBefore - calcBefore+1;
@@ -264,7 +262,6 @@
                 CUREENT MONTH
             \*-----------------*/
             var currDaysInMonth = monthDays(year,month);
-            console.warn(month,year,currDaysInMonth);
             for(var c = 1 ; c <= currDaysInMonth ; c++)
             {
                 calendar += drawDay(c,'current',true);
@@ -274,13 +271,8 @@
             /*------------*\
                 MONTH +1
             \*------------*/
-
             var nextMonth = 0;
-
-
             var cA = _calcAfter(year,month);
-
-
             if(cA !== 1)
             {
                 for(var a = 0 ; a <= 7-cA ; a++)
@@ -291,6 +283,7 @@
             }
 
             //to have 6 rows in calendar
+            //@todo to think
 //            if(cA !== 2 && cA !== 0)
 //            {
 //                for(var a = 0 ; a < 7 ; a++)
