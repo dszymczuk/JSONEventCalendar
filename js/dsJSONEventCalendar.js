@@ -45,7 +45,7 @@
 
             //next month
             that.on('click','.ds-next-month',function(){
-                if(month > 11)
+                if(month > 10)
                 {
                     month = 0;
                     year++;
@@ -53,7 +53,8 @@
                 else
                     month++;
 
-//                console.warn(month,year);
+                console.warn(month,year);
+
                 that.html(draw(that,options.mode,{
                     formatTitle: settings.formatTitle,
                     lang: settings.lang
@@ -62,11 +63,11 @@
                 }));
                 _refreshDayHeight(that);
             });
-            
+
             //prev month
             that.on('click','.ds-prev-month',function(){
 //                console.log("jer: ",year);
-                if(month < 0)
+                if(month < 1)
                 {
                     month=11;
                     year--;
@@ -74,7 +75,7 @@
                 else
                     month--;
 
-//                console.warn(month,year);
+                console.warn(month,year);
                 that.html(draw(that,options.mode,{
                     formatTitle: settings.formatTitle,
                     lang: settings.lang
@@ -83,16 +84,16 @@
                 }));
                 _refreshDayHeight(that);
             });
-            
+
             //event click
-            that.on('click','.ds-event',function(){      
+            that.on('click','.ds-event',function(){
                 var elem = $(this);
                 var id = elem[0].id;
 
                 var event =  _.find(events, function(e) {
                     return e.id == id;
                 });
-                
+
 //                console.warn(event);
                 $(".ds-calendar").append(_drawModalEvent(event));
 //                $(".ds-event-modal").css('visibility', 'visible');
