@@ -53,7 +53,7 @@
                 else
                     month++;
 
-                console.warn(month,year);
+//                console.warn(month,year);
 
                 that.html(draw(that,options.mode,{
                     formatTitle: settings.formatTitle,
@@ -75,7 +75,7 @@
                 else
                     month--;
 
-                console.warn(month,year);
+//                console.warn(month,year);
                 that.html(draw(that,options.mode,{
                     formatTitle: settings.formatTitle,
                     lang: settings.lang
@@ -188,6 +188,7 @@
                 month: month,
                 year: year
             };
+            before.month--;
             var after = {
                 month: month,
                 year: year
@@ -247,19 +248,24 @@
             /*-----------*\
                 MONTH -1
             \*-----------*/
-             
-            
-            for(var b = 0 ; b < _calcBefore(year,month) ; b++)
-//            for(var b = 0 ; b < _calcBefore(before.year,before.month) ; b++)
+
+//            var monthBefore = monthDays(year,month);
+            var daysBefore = monthDays(before.year,before.month);
+            var calcBefore = _calcBefore(year,month);
+            daysBefore = daysBefore - calcBefore+1;
+
+            for(var b = 0 ; b < calcBefore ; b++)
             {
-                calendar += drawDay(b,'before');
+                calendar += drawDay(daysBefore+b,'before');
             }
 
 
             /*-----------------*\
                 CUREENT MONTH
             \*-----------------*/
-            for(var c = 1 ; c <= monthDays(2014,month) ; c++)
+            var currDaysInMonth = monthDays(year,month);
+            console.warn(month,year,currDaysInMonth);
+            for(var c = 1 ; c <= currDaysInMonth ; c++)
             {
                 calendar += drawDay(c,'current',true);
             }
@@ -268,25 +274,31 @@
             /*------------*\
                 MONTH +1
             \*------------*/
+
+            var nextMonth = 0;
+
+
             var cA = _calcAfter(year,month);
-//            var cA = _calcAfter(after.year,after.month);
-//
+
+
             if(cA !== 1)
             {
                 for(var a = 0 ; a <= 7-cA ; a++)
                 {
-                    calendar += drawDay(a,'after');
+                    nextMonth++;
+                    calendar += drawDay(nextMonth,'after');
                 }
             }
-            
+
             //to have 6 rows in calendar
-            if(cA !== 2 && cA !== 0)
-            {
-                for(var a = 0 ; a < 7 ; a++)
-                {
-                    calendar += drawDay(a,'super after');
-                }
-            }
+//            if(cA !== 2 && cA !== 0)
+//            {
+//                for(var a = 0 ; a < 7 ; a++)
+//                {
+//                    nextMonth++;
+//                    calendar += drawDay(nextMonth,'super after');
+//                }
+//            }
 
 
 
@@ -367,6 +379,7 @@
             function monthDays(year,month) {
                 month++;
                 var d = new Date(year,month, 0);
+//                console.log(d.getDate());
                 return d.getDate();
             }
 
