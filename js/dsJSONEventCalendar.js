@@ -227,7 +227,7 @@
 //                for(var a = 0 ; a < 7 ; a++)
 //                {
 //                    nextMonth++;
-//                    calendar += drawDay(nextMonth,'super after');
+//                    calendar += drawDay(nextMonth,'extra-after');
 //                }
 //            }
 

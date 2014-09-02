@@ -16,30 +16,51 @@
 }
 
 /* COLORS */
-$calendarHeader: #286c41;
-$borderHeaderColor: #1b4528;
-$dayTitleColor: #14331c;
+$header: #dadada;
+$headerText: #585858;
+$headerBorderColor: #666666;
+$headerArrow: #fff;
+$headerArrowHover: #585858;
 
-$dayColor: #338046;
-$dayColorBorder: #52cc70;
+
+$dayColorBg: #f2f2f2;
+$dayNameColor: darken($dayColorBg,60%);
+
+
+$dayColorBeforeBg: $dayColorBg;
+$dayColorAfterBg: $dayColorBg;
+
+$dayHeaderDarkenLevel: 20%;
+$dayHeaderColorBg: darken($dayColorBg,$dayHeaderDarkenLevel);
+$dayHeaderColorBeforeBg: darken($dayColorBg,$dayHeaderDarkenLevel);
+$dayHeaderColorAfterBg: darken($dayColorBg,$dayHeaderDarkenLevel);
+$dayHeaderTextColor: #333;
+$dayColorBorder: #999999;
+
+
+
+
+
+
 $dayHeaderColor: #296638;
 $eventsColor: #1f4d2a;
 $eventColor: #9acd32;
 $eventColorBorder: #27330d;
-$dayBefore: #993a26;
-//$dayBefore: #3d9953;
-//$dayAfter: #296637;
-$dayAfter: #2c3066;
 
+
+#calendar-wrapper {
+  width: 1000px;
+  background-color: white;
+}
 
 .ds-calendar {
   $maxSizeDay: 100%/7;
   
-  width: 1000px;
-  background-color: wheat;
+  width: 100%;
   overflow: hidden;
   color: white;
   position: relative;
+  font-size: 13px;
   
   /*---------------------*\
     Header of calendar (name of current month)
@@ -48,13 +69,13 @@ $dayAfter: #2c3066;
     background-color: white;
     margin: 5px 0;
     padding: 3px 0;
-    border-bottom: 2px solid $borderHeaderColor;
-    border-top: 2px solid $borderHeaderColor;
+    border-bottom: 2px solid $headerBorderColor;
+    border-top: 2px solid $headerBorderColor;
   }
   
   .ds-calendar-header {
     text-align: center;
-    background-color: $calendarHeader;
+    background-color: $header;
     position: relative;
     height: 20px;
     
@@ -80,9 +101,9 @@ $dayAfter: #2c3066;
         float: left;
         border-style: solid;
         border-width: 7.5px 13.0px 7.5px 0;
-        border-color: transparent #ffffff transparent transparent;
+        border-color: transparent $headerArrow transparent transparent;
         &:hover {
-          border-color: transparent red transparent transparent ;
+          border-color: transparent $headerArrowHover transparent transparent ;
         }
       }
     }
@@ -90,6 +111,8 @@ $dayAfter: #2c3066;
       display: inline-block;
       text-transform: uppercase;
       margin-top: 3px;
+      color: $headerText;
+      font-weight: bold;
     }
     .ds-next-month{
       @extend .arrow;
@@ -98,9 +121,9 @@ $dayAfter: #2c3066;
         float: left;
         border-style: solid;
         border-width: 7.5px 0px 7.5px 13px;
-        border-color: transparent transparent transparent #ffffff;
+        border-color: transparent transparent transparent $headerArrow;
         &:hover {
-          border-color: transparent transparent transparent red;
+          border-color: transparent transparent transparent $headerArrowHover;
         }
       }
     }
@@ -114,7 +137,7 @@ $dayAfter: #2c3066;
   .ds-title {
     .ds-day {
       @include size($maxSizeDay,20px);
-      background-color: $dayTitleColor;
+      background-color: $dayNameColor;
       box-sizing: border-box;
       text-transform: uppercase;
       text-align: center;
@@ -129,7 +152,7 @@ $dayAfter: #2c3066;
   \*---------------------*/
   .ds-day {
     @include size($maxSizeDay,auto);
-    background-color: $dayColor;
+    background-color: $dayColorBg;
     border: 1px solid $dayColorBorder;
     float: left;
     box-sizing: border-box;
@@ -139,45 +162,47 @@ $dayAfter: #2c3066;
     .ds-day-header {
       text-align: center;
       padding: 1px 0px 1px 10px;
+      color: $dayHeaderTextColor;
+      font-weight: bold;
     }
     &.before {
       .ds-day-header {
         @extend .ds-day-header;
-        background-color: $dayBefore;
+        background-color: $dayHeaderColorBeforeBg;
       }
       .ds-events {
         @extend .ds-events;
-        background-color: lighten($dayBefore,20%);
+        background-color: $dayColorBeforeBg;
       }
     }
     &.current {
       .ds-day-header {
         @extend .ds-day-header;
-        background-color: $dayHeaderColor;
+        background-color: $dayHeaderColorBg;
       }
       .ds-events {
         @extend .ds-events;
-        background-color: lighten($dayHeaderColor,20%);
+        background-color: $dayColorBg;
       }
     }
     &.after {
       .ds-day-header {
         @extend .ds-day-header;
-        background-color: $dayAfter;
+        background-color: $dayHeaderColorAfterBg;
       }
       .ds-events {
         @extend .ds-events;
-        background-color: lighten($dayAfter,20%);
+        background-color: $dayColorBg;
       }
     }
-    &.super {
+    &.extra-after {
       .ds-day-header {
         @extend .ds-day-header;
-        background-color: darken($dayAfter,20%);
+        background-color: $dayHeaderColorAfterBg;
       }
       .ds-events {
         @extend .ds-events;
-        background-color: darken(darken($dayAfter,20%),20%);
+        background-color: $dayColorBg;
       }
     }
     &.ds-new-week {
