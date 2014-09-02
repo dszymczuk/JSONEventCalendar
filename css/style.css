@@ -66,11 +66,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 /* COLORS */
 /* line 51, ../sass/style.scss */
 #calendar-wrapper {
+  margin: 0 auto;
   width: 1000px;
   background-color: white;
+  margin-top: 10%;
 }
 
-/* line 56, ../sass/style.scss */
+/* line 58, ../sass/style.scss */
 .ds-calendar {
   width: 100%;
   overflow: hidden;
@@ -87,7 +89,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     One day element
   \*---------------------*/
 }
-/* line 68, ../sass/style.scss */
+/* line 70, ../sass/style.scss */
 .ds-calendar .ds-calendar-header-border {
   background-color: white;
   margin: 5px 0;
@@ -95,19 +97,19 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   border-bottom: 2px solid #666666;
   border-top: 2px solid #666666;
 }
-/* line 76, ../sass/style.scss */
+/* line 78, ../sass/style.scss */
 .ds-calendar .ds-calendar-header {
   text-align: center;
   background-color: #dadada;
   position: relative;
   height: 20px;
 }
-/* line 82, ../sass/style.scss */
+/* line 84, ../sass/style.scss */
 .ds-calendar .ds-calendar-header .arrow, .ds-calendar .ds-calendar-header .ds-prev-month, .ds-calendar .ds-calendar-header .ds-next-month {
   display: inline-block;
   position: absolute;
 }
-/* line 85, ../sass/style.scss */
+/* line 87, ../sass/style.scss */
 .ds-calendar .ds-calendar-header .arrow span, .ds-calendar .ds-calendar-header .ds-prev-month span, .ds-calendar .ds-calendar-header .ds-next-month span {
   height: 0;
   width: 0;
@@ -118,22 +120,22 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   cursor: pointer;
   transition: border-color 0.5s ease;
 }
-/* line 97, ../sass/style.scss */
+/* line 99, ../sass/style.scss */
 .ds-calendar .ds-calendar-header .ds-prev-month {
   left: 5px;
 }
-/* line 100, ../sass/style.scss */
+/* line 102, ../sass/style.scss */
 .ds-calendar .ds-calendar-header .ds-prev-month span {
   float: left;
   border-style: solid;
   border-width: 7.5px 13.0px 7.5px 0;
   border-color: transparent white transparent transparent;
 }
-/* line 105, ../sass/style.scss */
+/* line 107, ../sass/style.scss */
 .ds-calendar .ds-calendar-header .ds-prev-month span:hover {
   border-color: transparent #585858 transparent transparent;
 }
-/* line 110, ../sass/style.scss */
+/* line 112, ../sass/style.scss */
 .ds-calendar .ds-calendar-header .ds-title-month {
   display: inline-block;
   text-transform: uppercase;
@@ -141,22 +143,22 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   color: #585858;
   font-weight: bold;
 }
-/* line 117, ../sass/style.scss */
+/* line 119, ../sass/style.scss */
 .ds-calendar .ds-calendar-header .ds-next-month {
   right: 5px;
 }
-/* line 120, ../sass/style.scss */
+/* line 122, ../sass/style.scss */
 .ds-calendar .ds-calendar-header .ds-next-month span {
   float: left;
   border-style: solid;
   border-width: 7.5px 0px 7.5px 13px;
   border-color: transparent transparent transparent white;
 }
-/* line 125, ../sass/style.scss */
+/* line 127, ../sass/style.scss */
 .ds-calendar .ds-calendar-header .ds-next-month span:hover {
   border-color: transparent transparent transparent #585858;
 }
-/* line 138, ../sass/style.scss */
+/* line 140, ../sass/style.scss */
 .ds-calendar .ds-title .ds-day {
   width: 14.28571%;
   height: 20px;
@@ -167,7 +169,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   height: 22px;
   line-height: 1.4;
 }
-/* line 153, ../sass/style.scss */
+/* line 155, ../sass/style.scss */
 .ds-calendar .ds-day {
   width: 14.28571%;
   height: auto;
@@ -179,54 +181,54 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     One event in day
   \*---------------------*/
 }
-/* line 159, ../sass/style.scss */
+/* line 161, ../sass/style.scss */
 .ds-calendar .ds-day .ds-events, .ds-calendar .ds-day.before .ds-events, .ds-calendar .ds-day.current .ds-events, .ds-calendar .ds-day.after .ds-events, .ds-calendar .ds-day.extra-after .ds-events {
   overflow: hidden;
 }
-/* line 162, ../sass/style.scss */
+/* line 164, ../sass/style.scss */
 .ds-calendar .ds-day .ds-day-header, .ds-calendar .ds-day.before .ds-day-header, .ds-calendar .ds-day.current .ds-day-header, .ds-calendar .ds-day.after .ds-day-header, .ds-calendar .ds-day.extra-after .ds-day-header {
   text-align: center;
   padding: 1px 0px 1px 10px;
   color: #333333;
   font-weight: bold;
 }
-/* line 169, ../sass/style.scss */
+/* line 171, ../sass/style.scss */
 .ds-calendar .ds-day.before .ds-day-header {
   background-color: #bfbfbf;
 }
-/* line 173, ../sass/style.scss */
+/* line 175, ../sass/style.scss */
 .ds-calendar .ds-day.before .ds-events {
   background-color: #f2f2f2;
 }
-/* line 179, ../sass/style.scss */
+/* line 181, ../sass/style.scss */
 .ds-calendar .ds-day.current .ds-day-header {
   background-color: #bfbfbf;
 }
-/* line 183, ../sass/style.scss */
+/* line 185, ../sass/style.scss */
 .ds-calendar .ds-day.current .ds-events {
   background-color: #f2f2f2;
 }
-/* line 189, ../sass/style.scss */
+/* line 191, ../sass/style.scss */
 .ds-calendar .ds-day.after .ds-day-header {
   background-color: #bfbfbf;
 }
-/* line 193, ../sass/style.scss */
+/* line 195, ../sass/style.scss */
 .ds-calendar .ds-day.after .ds-events {
   background-color: #f2f2f2;
 }
-/* line 199, ../sass/style.scss */
+/* line 201, ../sass/style.scss */
 .ds-calendar .ds-day.extra-after .ds-day-header {
   background-color: #bfbfbf;
 }
-/* line 203, ../sass/style.scss */
+/* line 205, ../sass/style.scss */
 .ds-calendar .ds-day.extra-after .ds-events {
   background-color: #f2f2f2;
 }
-/* line 208, ../sass/style.scss */
+/* line 210, ../sass/style.scss */
 .ds-calendar .ds-day.ds-new-week {
   clear: left;
 }
-/* line 215, ../sass/style.scss */
+/* line 217, ../sass/style.scss */
 .ds-calendar .ds-day .ds-event {
   background-color: yellowgreen;
   width: 90%;
@@ -242,7 +244,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   border-radius: 4px;
   margin-top: 2px;
 }
-/* line 230, ../sass/style.scss */
+/* line 232, ../sass/style.scss */
 .ds-calendar .ds-day .ds-event:last-child {
   margin-bottom: 2px;
 }
@@ -250,7 +252,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 /*---------------------*\
     Modal
 \*---------------------*/
-/* line 239, ../sass/style.scss */
+/* line 252, ../sass/style.scss */
 .ds-event-modal {
   position: absolute;
   left: 0px;
@@ -260,42 +262,51 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   text-align: center;
   z-index: 1000;
 }
-/* line 248, ../sass/style.scss */
+/* line 261, ../sass/style.scss */
 .ds-event-modal .container {
   width: 500px;
   margin: 100px auto;
-  background-color: #fff;
-  border: 1px solid #000;
-  padding: 15px;
+  background-color: white;
+  border: 1px solid black;
   text-align: center;
   color: black;
   border-radius: 10px;
 }
-/* line 257, ../sass/style.scss */
+/* line 270, ../sass/style.scss */
 .ds-event-modal .container .header {
   background: azure;
+  -moz-border-radius: 10px 10px 0px 0px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px 10px 0px 0px;
 }
-/* line 259, ../sass/style.scss */
+/* line 273, ../sass/style.scss */
 .ds-event-modal .container .header .title {
   text-transform: uppercase;
 }
-/* line 262, ../sass/style.scss */
+/* line 276, ../sass/style.scss */
 .ds-event-modal .container .header .date {
   text-transform: uppercase;
 }
-/* line 266, ../sass/style.scss */
+/* line 280, ../sass/style.scss */
 .ds-event-modal .container .content {
   background: whitesmoke;
 }
-/* line 278, ../sass/style.scss */
+/* line 292, ../sass/style.scss */
 .ds-event-modal .container .footer {
   background: lightblue;
+  -moz-border-radius: 0px 0px 10px 10px;
+  -webkit-border-radius: 0px;
+  border-radius: 0px 0px 10px 10px;
 }
-/* line 280, ../sass/style.scss */
+/* line 295, ../sass/style.scss */
 .ds-event-modal .container .footer .close-button {
   background: indianred;
   padding: 5px;
   cursor: pointer;
+  overflow: hidden;
+  -moz-border-radius: 0px 0px 10px 10px;
+  -webkit-border-radius: 0px;
+  border-radius: 0px 0px 10px 10px;
 }
 
 /* for title of events

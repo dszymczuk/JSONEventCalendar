@@ -49,8 +49,10 @@ $eventColorBorder: #27330d;
 
 
 #calendar-wrapper {
+  margin: 0 auto;
   width: 1000px;
   background-color: white;
+  margin-top: 10%;
 }
 
 .ds-calendar {
@@ -233,9 +235,20 @@ $eventColorBorder: #27330d;
     }
   }
 }
-  /*---------------------*\
-      Modal
-  \*---------------------*/
+
+
+
+/*---------------------*\
+    Modal
+\*---------------------*/
+$modalContainerColorBg: #fff;
+$modalHeaderColorBg: #f0ffff;
+$modalContentColorBg: #f5f5f5;
+$modalFooterColorBg: #add8e6;
+$modalCloseColorBg: #cd5c5c;
+$modalTextColor: black;
+$modalBorder: 1px solid #000;
+
   .ds-event-modal {
 //    visibility: hidden;
     position: absolute;
@@ -248,14 +261,15 @@ $eventColorBorder: #27330d;
     .container {
       width:500px;
       margin: 100px auto;
-      background-color: #fff;
-      border:1px solid #000;
-      padding:15px;
+      background-color: $modalContainerColorBg;
+      border: $modalBorder;
+//      padding:15px;
       text-align:center;
-      color: black;
+      color: $modalTextColor;
       border-radius: 10px;
       .header {
-        background: azure;
+        background: $modalHeaderColorBg;
+        @include border-radius(10px 10px 0px 0px);
         .title {
           text-transform: uppercase;
         }
@@ -264,7 +278,7 @@ $eventColorBorder: #27330d;
         }
       }
       .content {
-        background: whitesmoke;
+        background: $modalContentColorBg;
         .type {
 
         }
@@ -276,11 +290,14 @@ $eventColorBorder: #27330d;
         }
       }
       .footer {
-        background: lightblue;
+        background: $modalFooterColorBg;
+        @include border-radius(0px 0px 10px 10px);
         .close-button {
-          background: indianred;
+          background: $modalCloseColorBg;
           padding: 5px;
           cursor: pointer;
+          overflow: hidden;
+          @include border-radius(0px 0px 10px 10px);
         }
       }
     }
