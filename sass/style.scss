@@ -52,6 +52,7 @@ $dayHeaderColor: #296638;
 $eventsColor: #1f4d2a;
 $eventColor: #9acd32;
 $eventColorBorder: #27330d;
+$eventTextColor: #000000;
 
 
 //for develop
@@ -72,6 +73,8 @@ $eventColorBorder: #27330d;
   font-size: $fontSize;
   border: $borderCalendar;
   padding: 5px;
+  font-size: 14px;
+  font-family: Arial;
   
   /*---------------------*\
     Header of calendar (name of current month)
@@ -230,6 +233,7 @@ $eventColorBorder: #27330d;
       margin: 0 auto;
       border: 1px solid $eventColorBorder;
       cursor: pointer;
+      color: $eventTextColor;
       
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -252,12 +256,15 @@ $eventColorBorder: #27330d;
     Modal
 \*---------------------*/
 $modalContainerColorBg: #fff;
-$modalHeaderColorBg: #f0ffff;
+$modalHeaderColorBg: #9acd32;
 $modalContentColorBg: #f5f5f5;
-$modalFooterColorBg: #add8e6;
-$modalCloseColorBg: #cd5c5c;
+$modalFooterColorBg: transparent;
+$modalCloseColorBg: #9acd32;
 $modalTextColor: black;
 $modalBorder: 1px solid #000;
+$modalDateColor: #414141;
+$modalLinkColor: #27330d;
+$modalLinkHoverColor: #1f4d2a;
 
   .ds-event-modal {
 //    visibility: hidden;
@@ -268,9 +275,12 @@ $modalBorder: 1px solid #000;
     height:100%;
     text-align:center;
     z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     .container {
       width:500px;
-      margin: 100px auto;
+//      margin: 20% auto;
       background-color: $modalContainerColorBg;
       border: $modalBorder;
 //      padding:15px;
@@ -279,35 +289,67 @@ $modalBorder: 1px solid #000;
       border-radius: 10px;
       .header {
         background: $modalHeaderColorBg;
+        border-bottom: $modalBorder;
+        padding: 10px;
         @include border-radius(10px 10px 0px 0px);
         .title {
           text-transform: uppercase;
+          font-weight: bold;
+          font-size: 16px;
         }
         .date {
           text-transform: uppercase;
+          color: $modalDateColor;
+          font-size: 12px;
+          margin-top: 5px;
         }
       }
       .content {
         background: $modalContentColorBg;
+        padding: 10px;
         .type {
-
+          span {
+            font-weight: bold;
+          }
         }
         .description {
-
+          padding: 10px;
         }
         .url {
-
+          text-overflow: ellipsis;
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          a {
+              color: $modalLinkColor;
+              font-weight: normal;
+            &:link,
+            &:visited {
+              font-weight: normal;
+            }
+            &:hover {
+              font-weight: bold;
+            }
+            &:active {
+              font-weight: bold;
+            }
+          }
         }
       }
       .footer {
+        border-top: $modalBorder;
         background: $modalFooterColorBg;
         @include border-radius(0px 0px 10px 10px);
         .close-button {
           background: $modalCloseColorBg;
-          padding: 5px;
+          padding: 10px;
           cursor: pointer;
           overflow: hidden;
           @include border-radius(0px 0px 10px 10px);
+          transition: background 0.5s ease;
+          &:hover {
+            background: darken($modalCloseColorBg,20%);
+          }
         }
       }
     }
