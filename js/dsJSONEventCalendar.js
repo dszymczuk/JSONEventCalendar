@@ -10,6 +10,7 @@
     $.fn.JSONEventCalendar = function(events,options) {
 
         var settings = $.extend($.fn.JSONEventCalendar.settings, options );
+        settings.startFrom = settings.startFrom%7;
         
         var initMoment = moment();
         initMoment.locale(settings.lang);
@@ -187,8 +188,11 @@
                 MONTH -1
             \*-----------*/
             var daysBefore = monthDays(before.year,before.month);
-            var calcBefore = _calcBefore(year,month);
+            var calcBefore = _calcBefore(year,month) + 7 - offset +1;
             daysBefore = daysBefore - calcBefore+1;
+
+            if(calcBefore >= 7)
+                calcBefore = calcBefore - 7;
 
             for(var b = 0 ; b < calcBefore ; b++)
             {
@@ -211,14 +215,21 @@
             \*------------*/
             var nextMonth = 0;
             var cA = _calcAfter(year,month);
-            if(cA !== 1)
+            if(cA === offset)
+                cA = 8;
+
+            cA = offset - cA;
+
+            if(cA > -5 && cA < 0)
+                cA = 7 + cA;
+
+
+            for(var a = 0 ; a < cA ; a++)
             {
-                for(var a = 0 ; a <= 7-cA ; a++)
-                {
-                    nextMonth++;
-                    calendar += drawDay(nextMonth,'after');
-                }
+                nextMonth++;
+                calendar += drawDay(nextMonth,'after');
             }
+
 
             //to have 6 rows in calendar
             //@todo to think
@@ -337,7 +348,6 @@
 
 $.fn.JSONEventCalendar.settings = {
     lang: "pl",
-//    format: "DD-MM-YYYY",
     formatTitle: "MMMM YYYY",
     formatEvent: "DD MMMM YYYY",
     startFrom: 1, //0 - Sunday, 1 - Monday etc.
