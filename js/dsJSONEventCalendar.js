@@ -187,8 +187,11 @@
                 MONTH -1
             \*-----------*/
             var daysBefore = monthDays(before.year,before.month);
-            var calcBefore = _calcBefore(year,month);
+            var calcBefore = _calcBefore(year,month) + 7 - offset +1;
             daysBefore = daysBefore - calcBefore+1;
+
+            if(calcBefore >= 7)
+                calcBefore = calcBefore - 7;
 
             for(var b = 0 ; b < calcBefore ; b++)
             {
@@ -340,7 +343,7 @@ $.fn.JSONEventCalendar.settings = {
 //    format: "DD-MM-YYYY",
     formatTitle: "MMMM YYYY",
     formatEvent: "DD MMMM YYYY",
-    startFrom: 1, //0 - Sunday, 1 - Monday etc.
+    startFrom: 3, //0 - Sunday, 1 - Monday etc.
     eventsInDay: 3,
     closeText: 'close',
     typeText: 'Type:'
