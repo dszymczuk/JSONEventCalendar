@@ -348,7 +348,6 @@
 
 $.fn.JSONEventCalendar.settings = {
     lang: "pl",
-//    format: "DD-MM-YYYY",
     formatTitle: "MMMM YYYY",
     formatEvent: "DD MMMM YYYY",
     startFrom: 1, //0 - Sunday, 1 - Monday etc.
