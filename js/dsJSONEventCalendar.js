@@ -305,7 +305,13 @@
             var eventDetails = "";
             eventDetails += '<div class="ds-event-modal">';
             eventDetails += '<div class="container">';
-            eventDetails += '<div class="header" style="background-color: red">';
+
+            if(typeof  event.color !== "undefined")
+                eventDetails += '<div class="header" style="background-color: '+event.color+'">';
+            else
+                eventDetails += '<div class="header">';
+
+
             eventDetails += '<p class="title">'+event.title+'</p>';
             eventDetails += '<p class="date">'+moment(event.date).locale(settings.lang).format(settings.formatEvent)+'</p>';
             eventDetails += '</div>';
