@@ -227,7 +227,7 @@
 //                for(var a = 0 ; a < 7 ; a++)
 //                {
 //                    nextMonth++;
-//                    calendar += drawDay(nextMonth,'super after');
+//                    calendar += drawDay(nextMonth,'extra-after');
 //                }
 //            }
 
@@ -305,14 +305,22 @@
             var eventDetails = "";
             eventDetails += '<div class="ds-event-modal">';
             eventDetails += '<div class="container">';
-            eventDetails += '<div class="header">';
+
+            if(typeof  event.color !== "undefined")
+                eventDetails += '<div class="header" style="background-color: '+event.color+'">';
+            else
+                eventDetails += '<div class="header">';
+
+
             eventDetails += '<p class="title">'+event.title+'</p>';
             eventDetails += '<p class="date">'+moment(event.date).locale(settings.lang).format(settings.formatEvent)+'</p>';
             eventDetails += '</div>';
             eventDetails += '<div class="content">';
-            eventDetails += '<p class="type">'+event.type+'</p>';
+            eventDetails += '<p class="type">'+settings.typeText+' <span>'+event.type+'</span></p>';
             eventDetails += '<p class="description">'+event.description+'</p>';
-            eventDetails += '<p class="url">'+event.url+'</p>';
+            eventDetails += '<p class="url">';
+            eventDetails += '<a href="'+event.url+'">'+event.url+'</a>';
+            eventDetails += '</p>';
             eventDetails += '</div>';
             eventDetails += '<div class="footer">';
             eventDetails += '<div class="close-button">';
@@ -334,7 +342,8 @@ $.fn.JSONEventCalendar.settings = {
     formatEvent: "DD MMMM YYYY",
     startFrom: 1, //0 - Sunday, 1 - Monday etc.
     eventsInDay: 3,
-    closeText: 'close'
+    closeText: 'close',
+    typeText: 'Type:'
 };
 
 
