@@ -220,9 +220,8 @@
 
             cA = offset - cA;
 
-            if(cA > -5 && cA < 0)
+            if(cA >= -5 && cA < 0)
                 cA = 7 + cA;
-
 
             for(var a = 0 ; a < cA ; a++)
             {
