@@ -1,7 +1,7 @@
 /**
  * Author: Damian Szymczuk
  * Website: http://dszymczuk.pl
- * Version: 0.2
+ * Version: 1.0
  * GitHub: https://github.com/dszymczuk/JSONEventCalendar
  */
 
@@ -220,9 +220,8 @@
 
             cA = offset - cA;
 
-            if(cA > -5 && cA < 0)
+            if(cA >= -5 && cA < 0)
                 cA = 7 + cA;
-
 
             for(var a = 0 ; a < cA ; a++)
             {
@@ -327,11 +326,20 @@
             eventDetails += '<p class="date">'+moment(event.date).locale(settings.lang).format(settings.formatEvent)+'</p>';
             eventDetails += '</div>';
             eventDetails += '<div class="content">';
-            eventDetails += '<p class="type">'+settings.typeText+' <span>'+event.type+'</span></p>';
+
+            if(typeof  event.type !== "undefined")
+                eventDetails += '<p class="type">'+settings.typeText+' <span>'+event.type+'</span></p>';
+
             eventDetails += '<p class="description">'+event.description+'</p>';
-            eventDetails += '<p class="url">';
-            eventDetails += '<a href="'+event.url+'">'+event.url+'</a>';
-            eventDetails += '</p>';
+
+            if(typeof event.url !== "undefined")
+            {
+                eventDetails += '<p class="url">';
+                eventDetails += '<a href="'+event.url+'">'+event.url+'</a>';
+                eventDetails += '</p>';
+            }
+
+
             eventDetails += '</div>';
             eventDetails += '<div class="footer">';
             eventDetails += '<div class="close-button">';
@@ -347,10 +355,10 @@
 
 
 $.fn.JSONEventCalendar.settings = {
-    lang: "pl",
+    lang: "en",
     formatTitle: "MMMM YYYY",
     formatEvent: "DD MMMM YYYY",
-    startFrom: 1, //0 - Sunday, 1 - Monday etc.
+    startFrom: 1,
     eventsInDay: 3,
     closeText: 'close',
     typeText: 'Type:'

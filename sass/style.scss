@@ -1,18 +1,15 @@
 @import "reset";
 @import "compass/css3/border-radius";
 
-@mixin size($width,$height : nil) {
-  @if($height == nil)
-  {
+@mixin size($width, $height: nil) {
+  @if ($height == nil) {
     width: $width;
     height: $width;
-  }
-  @else
-  {
+  } @else {
     width: $width;
     height: $height;
   }
-  
+
 }
 
 /* CONFIG CALENDAR */
@@ -25,28 +22,20 @@ $headerBorderColor: #666666;
 $headerArrow: #fff;
 $headerArrowHover: #585858;
 
-
 $dayColorBg: #f2f2f2;
-$dayNameColor: darken($dayColorBg,60%);
+$dayNameColor: darken($dayColorBg, 60%);
 
 $dayHeaderAfterBeforeLevel: 3%;
 $dayHeaderDarkenLevel: 20%;
 
+$dayColorBeforeBg: lighten($dayColorBg, $dayHeaderAfterBeforeLevel);
+$dayColorAfterBg: lighten($dayColorBg, $dayHeaderAfterBeforeLevel);
 
-$dayColorBeforeBg: lighten($dayColorBg,$dayHeaderAfterBeforeLevel);
-$dayColorAfterBg: lighten($dayColorBg,$dayHeaderAfterBeforeLevel);
-
-
-$dayHeaderColorBg: darken($dayColorBg,$dayHeaderDarkenLevel);
-$dayHeaderColorBeforeBg: darken($dayColorBeforeBg,$dayHeaderAfterBeforeLevel);
-$dayHeaderColorAfterBg: darken($dayColorAfterBg,$dayHeaderAfterBeforeLevel);
+$dayHeaderColorBg: darken($dayColorBg, $dayHeaderDarkenLevel);
+$dayHeaderColorBeforeBg: darken($dayColorBeforeBg, $dayHeaderAfterBeforeLevel);
+$dayHeaderColorAfterBg: darken($dayColorAfterBg, $dayHeaderAfterBeforeLevel);
 $dayHeaderTextColor: #333;
 $dayColorBorder: #999999;
-
-
-
-
-
 
 $dayHeaderColor: #296638;
 $eventsColor: #1f4d2a;
@@ -55,17 +44,9 @@ $eventColorBorder: #27330d;
 $eventTextColor: #000000;
 
 
-//for develop
-#calendar-wrapper {
-  margin: 0 auto;
-  width: 1000px;
-  background-color: white;
-  margin-top: 10%;
-}
-
 .ds-calendar {
   $maxSizeDay: 100%/7;
-  
+
   width: 100%;
   overflow: hidden;
   color: white;
@@ -75,7 +56,7 @@ $eventTextColor: #000000;
   padding: 5px;
   font-size: 14px;
   font-family: Arial;
-  
+
   /*---------------------*\
     Header of calendar (name of current month)
   \*---------------------*/
@@ -86,13 +67,13 @@ $eventTextColor: #000000;
     border-bottom: 2px solid $headerBorderColor;
     border-top: 2px solid $headerBorderColor;
   }
-  
+
   .ds-calendar-header {
     text-align: center;
     background-color: $header;
     position: relative;
     height: 20px;
-    
+
     .arrow {
       display: inline-block;
       position: absolute;
@@ -117,7 +98,7 @@ $eventTextColor: #000000;
         border-width: 7.5px 13.0px 7.5px 0;
         border-color: transparent $headerArrow transparent transparent;
         &:hover {
-          border-color: transparent $headerArrowHover transparent transparent ;
+          border-color: transparent $headerArrowHover transparent transparent;
         }
       }
     }
@@ -128,7 +109,7 @@ $eventTextColor: #000000;
       color: $headerText;
       font-weight: bold;
     }
-    .ds-next-month{
+    .ds-next-month {
       @extend .arrow;
       right: 5px;
       span {
@@ -144,13 +125,12 @@ $eventTextColor: #000000;
 
   }
 
-
   /*---------------------*\
     Names of week
   \*---------------------*/
   .ds-title {
     .ds-day {
-      @include size($maxSizeDay,20px);
+      @include size($maxSizeDay, 20px);
       background-color: $dayNameColor;
       box-sizing: border-box;
       text-transform: uppercase;
@@ -160,12 +140,11 @@ $eventTextColor: #000000;
     }
   }
 
-
   /*---------------------*\
     One day element
   \*---------------------*/
   .ds-day {
-    @include size($maxSizeDay,auto);
+    @include size($maxSizeDay, auto);
     background-color: $dayColorBg;
     border: 1px solid $dayColorBorder;
     float: left;
@@ -234,13 +213,10 @@ $eventTextColor: #000000;
       border: 1px solid $eventColorBorder;
       cursor: pointer;
       color: $eventTextColor;
-      
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
-      
       padding: 1px 4px;
-      
       @include border-radius(4px);
       margin-top: 2px;
       &:last-child {
@@ -249,8 +225,6 @@ $eventTextColor: #000000;
     }
   }
 }
-
-
 
 /*---------------------*\
     Modal
@@ -266,98 +240,88 @@ $modalDateColor: #414141;
 $modalLinkColor: #27330d;
 $modalLinkHoverColor: #1f4d2a;
 
-  .ds-event-modal {
-//    visibility: hidden;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width:100%;
-    height:100%;
-    text-align:center;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .container {
-      width:500px;
-//      margin: 20% auto;
-      background-color: $modalContainerColorBg;
-      border: $modalBorder;
-//      padding:15px;
-      text-align:center;
-      color: $modalTextColor;
-      border-radius: 10px;
-      .header {
-        background: $modalHeaderColorBg;
-        border-bottom: $modalBorder;
-        padding: 10px;
-        @include border-radius(10px 10px 0px 0px);
-        .title {
-          text-transform: uppercase;
+.ds-event-modal {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .container {
+    width: 500px;
+    background-color: $modalContainerColorBg;
+    border: $modalBorder;
+    text-align: center;
+    color: $modalTextColor;
+    border-radius: 10px;
+    .header {
+      background: $modalHeaderColorBg;
+      border-bottom: $modalBorder;
+      padding: 10px;
+      @include border-radius(10px 10px 0px 0px);
+      .title {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 16px;
+      }
+      .date {
+        text-transform: uppercase;
+        color: $modalDateColor;
+        font-size: 12px;
+        margin-top: 5px;
+      }
+    }
+    .content {
+      background: $modalContentColorBg;
+      padding: 10px;
+      .type {
+        span {
           font-weight: bold;
-          font-size: 16px;
-        }
-        .date {
-          text-transform: uppercase;
-          color: $modalDateColor;
-          font-size: 12px;
-          margin-top: 5px;
         }
       }
-      .content {
-        background: $modalContentColorBg;
+      .description {
         padding: 10px;
-        .type {
-          span {
+      }
+      .url {
+        text-overflow: ellipsis;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        a {
+          color: $modalLinkColor;
+          font-weight: normal;
+          &:link,
+          &:visited {
+            font-weight: normal;
+          }
+          &:hover {
             font-weight: bold;
           }
-        }
-        .description {
-          padding: 10px;
-        }
-        .url {
-          text-overflow: ellipsis;
-          width: 100%;
-          white-space: nowrap;
-          overflow: hidden;
-          a {
-              color: $modalLinkColor;
-              font-weight: normal;
-            &:link,
-            &:visited {
-              font-weight: normal;
-            }
-            &:hover {
-              font-weight: bold;
-            }
-            &:active {
-              font-weight: bold;
-            }
-          }
-        }
-      }
-      .footer {
-        border-top: $modalBorder;
-        background: $modalFooterColorBg;
-        @include border-radius(0px 0px 10px 10px);
-        .close-button {
-          background: $modalCloseColorBg;
-          padding: 10px;
-          cursor: pointer;
-          overflow: hidden;
-          @include border-radius(0px 0px 10px 10px);
-          transition: background 0.5s ease;
-          &:hover {
-            background: darken($modalCloseColorBg,20%);
+          &:active {
+            font-weight: bold;
           }
         }
       }
     }
+    .footer {
+      border-top: $modalBorder;
+      background: $modalFooterColorBg;
+      @include border-radius(0px 0px 10px 10px);
+      .close-button {
+        background: $modalCloseColorBg;
+        padding: 10px;
+        cursor: pointer;
+        overflow: hidden;
+        @include border-radius(0px 0px 10px 10px);
+        transition: background 0.5s ease;
+        &:hover {
+          background: darken($modalCloseColorBg, 20%);
+        }
+      }
+    }
   }
-
-
-/* for title of events
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
-*/
+}
