@@ -35,22 +35,7 @@
 
 <script>
     $(document).ready(function(){
-        $("#calendar1").JSONEventCalendar(sampleEvents,{
-            mode: 'calendar'
-        });
-
-        
-        var retek = _.filter(sampleEvents, function(sE) {
-//            return new Date(2014,9,1) < new Date(sE.date);
-            return  moment(new Date(2014,8,13)) < new Date(sE.date) && new Date(sE.date) < moment(new Date(2014,8,13)).add(1,'d') ;
-//            return new Date(2014,8,12) == new Date(sE.date);
-//            return sE.type === "meeting";
-        });
-        
-//        console.log(retek);
-        
-
-        
+        $("#calendar1").JSONEventCalendar(sampleEvents);
     });
 </script>
 </body>
