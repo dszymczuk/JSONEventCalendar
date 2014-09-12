@@ -14,7 +14,7 @@ index.html is example
 Progress
 -----------
 
-![progress of project](http://dszymczuk.pl/progressbar/?id=1)
+![progress of project](http://dszymczuk.pl/progressbar/jsonevent?id=1)
 
 
 
