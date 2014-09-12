@@ -9,6 +9,8 @@ Each event has element like: title, date and time, type, link and more.
 
 You can set own date format to show on list of events, choose colors of events and more - check feature list.
 
+index.html is example
+
 Progress
 -----------
 
